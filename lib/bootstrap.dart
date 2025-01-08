@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_template_by_msi/app/app_secret.dart';
 import 'package:flutter_template_by_msi/app/view/app.dart';
 import 'package:flutter_template_by_msi/services/dependencies/src/dependency_injection.dart';
 import 'package:flutter_template_by_msi/services/environments/environments.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_template_by_msi/services/logger/error_logger.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared/shared.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
@@ -34,6 +36,13 @@ class AppBlocObserver extends BlocObserver {
 
 Future<void> bootstrap(Environment env) async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await AppSecrets.load();
+
+  await Supabase.initialize(
+    url: AppSecrets.supabaseUrl,
+    anonKey: AppSecrets.supabaseAnonKey,
+  );
 
   await ServiceProvider.init(environment: env);
 

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template_by_msi/app/screens/screens.dart';
+import 'package:flutter_template_by_msi/features/onboarding/presentation/view/onboarding_view.dart';
 import 'package:go_router/go_router.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>(
@@ -41,6 +42,18 @@ GoRoute _buildSplashScreenRoute() => GoRoute(
       path: '/${SplashScreen.routeName}',
       pageBuilder: _getDefaultPageBuilderByPlatform(
         childBuilder: (_, __) => const SplashScreen(),
+      ),
+      routes: [
+        _buildOnBoardingRoute(),
+      ],
+    );
+
+GoRoute _buildOnBoardingRoute() => GoRoute(
+      parentNavigatorKey: _rootNavigatorKey,
+      name: OnBoardingView.routeName,
+      path: OnBoardingView.routeName,
+      pageBuilder: _getDefaultPageBuilderByPlatform(
+        childBuilder: (_, __) => const OnBoardingView(),
       ),
     );
 

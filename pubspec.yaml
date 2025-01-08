@@ -48,6 +48,10 @@ dependencies:
     path: packages/storage/secure_storage
   persistent_storage:
     path: packages/storage/persistent_storage
+  supabase_flutter: ^2.8.3
+  flutter_dotenv: ^5.2.1
+  lottie: ^3.3.0
+  smooth_page_indicator: ^1.2.0+3
 
 
 dev_dependencies:
@@ -64,6 +68,7 @@ flutter:
   uses-material-design: true
   generate: true
   assets:
+    - .env
     - assets/images/common/
   fonts: # TODO(msi): use your own fonts if needed
     - family: consolas

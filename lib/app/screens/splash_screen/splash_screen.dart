@@ -2,8 +2,8 @@ import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template_by_msi/app/screens/error_screen/error_screen.dart';
-import 'package:flutter_template_by_msi/app/screens/home_screen/src/ui/home_screen.dart';
 import 'package:flutter_template_by_msi/blocs/app_meta_data_cubit/app_meta_data_cubit.dart';
+import 'package:flutter_template_by_msi/features/onboarding/presentation/view/onboarding_view.dart';
 import 'package:flutter_template_by_msi/services/dependencies/src/dependency_injection.dart';
 import 'package:go_router/go_router.dart';
 
@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
               // no action needed for these states
               break;
             case AppMetaDataLoaded():
-              context.goNamed(HomeScreen.routeName);
+              context.goNamed(OnBoardingView.routeName);
             case AppMetaDataLoadingFailed():
               context.goNamed(ErrorScreen.routeName);
           }
