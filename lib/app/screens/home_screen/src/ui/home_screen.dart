@@ -2,7 +2,6 @@ import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template_by_msi/app/screens/home_screen/src/cubit/counter_cubit.dart';
-import 'package:flutter_template_by_msi/features/user/presentation/pages/users_page.dart';
 import 'package:flutter_template_by_msi/services/dependencies/src/dependency_injection.dart';
 import 'package:flutter_template_by_msi/ui/widgets/global/base_language_dropdown.dart';
 import 'package:flutter_template_by_msi/ui/widgets/widgets.dart';
@@ -60,18 +59,6 @@ class HomeScreen extends StatelessWidget {
                   const LanguageDropdown(),
                   const SizedBox(height: 10),
                   const LanguageDropdown2(),
-                  ShallowButton(
-                    color: AppColorsTheme.blue,
-                    text: 'Go To Fetch Users Screen',
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute<UsersPage>(
-                          builder: (context) => const UsersPage(),
-                        ),
-                      );
-                    },
-                  ),
                 ],
               ),
             ),
