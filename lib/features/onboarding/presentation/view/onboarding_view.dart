@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_template_by_msi/features/onboarding/presentation/widget/widget.dart';
+import 'package:flutter_template_by_msi/services/dependencies/src/dependency_injection.dart';
+import 'package:persistent_storage/persistent_storage.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingView extends HookWidget {
@@ -43,8 +45,27 @@ class OnBoardingView extends HookWidget {
                         const Size(35, 30),
                       ),
                     ),
-                    onPressed: () {
-                      // context.goNamed(Routes.signIn);
+                    onPressed: () async {
+                      // Await the storage instance
+
+                      try {
+                        final storage = manualSl.get<PersistentStorage>();
+                      } catch (e) {
+                        await context.showInfoDialog(
+                          title: 'error',
+                          content: e.toString(),
+                        );
+                      }
+
+                      // Write to storage
+                      // await storage.write(key: 'firstTimer', value: 'false');
+
+                      // Show dialog with the value from storage
+                      //First Timer: ${await storage.read(key: 'firstTimer')}
+                      await context.showInfoDialog(
+                        title: 'Welcome',
+                        content: '',
+                      );
                     },
                     child: const Text('Next'),
                   )

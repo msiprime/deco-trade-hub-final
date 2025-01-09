@@ -6,6 +6,8 @@ import 'package:flutter_template_by_msi/services/dependencies/src/dependency_inj
 import 'package:flutter_template_by_msi/services/environments/environments.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart' hide Environment;
+import 'package:persistent_storage/persistent_storage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // Typedefs for injectable's annotations to hide the package from
 // the application code, so that it can be replaced with another DI package
@@ -77,6 +79,17 @@ class ServiceProvider {
         param1: param1,
         param2: param2,
       );
+
+  static Future<T> getAsync<T extends Object>({
+    String? instanceName,
+    dynamic param1,
+    dynamic param2,
+  }) =>
+      _getIt.getAsync<T>(
+        instanceName: instanceName,
+        param1: param1,
+        param2: param2,
+      );
 }
 
 /// Used to manually register services in the dependency container that are not
@@ -89,4 +102,18 @@ abstract class RegisterModule {
 
   @lazySingleton
   Dio get dio => Dio();
+}
+
+final manualSl = GetIt.instance;
+
+class ManualServiceProvider {
+  static Future<void> init() async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+
+    manualSl.registerLazySingleton<PersistentStorage>(
+      () => PersistentStorage(
+        sharedPreferences: sharedPreferences,
+      ),
+    );
+  }
 }

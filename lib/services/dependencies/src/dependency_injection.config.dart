@@ -55,7 +55,6 @@ _i174.GetIt $initInjectable(
         gh<_i763.AppLogger>(),
         gh<_i61.ErrorLogger>(),
       ));
-
   return getIt;
 }
 

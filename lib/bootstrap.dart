@@ -44,6 +44,8 @@ Future<void> bootstrap(Environment env) async {
     anonKey: AppSecrets.supabaseAnonKey,
   );
 
+  await ManualServiceProvider.init();
+
   await ServiceProvider.init(environment: env);
 
   HydratedBloc.storage = await HydratedStorage.build(
