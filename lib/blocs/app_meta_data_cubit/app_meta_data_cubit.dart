@@ -5,9 +5,12 @@ import 'package:android_id/android_id.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter_template_by_msi/blocs/bloc_utils/src/base_cubit.dart';
 import 'package:flutter_template_by_msi/services/dependencies/src/dependency_injection.dart';
+import 'package:flutter_template_by_msi/services/global/enums.dart';
 import 'package:flutter_template_by_msi/services/logger/app_logger.dart';
 import 'package:flutter_template_by_msi/services/logger/error_logger.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:persistent_storage/persistent_storage.dart';
+import 'package:shared/shared.dart';
 
 part 'app_meta_data_state.dart';
 
@@ -59,6 +62,13 @@ class AppMetaDataCubit extends BaseCubit<AppMetaDataState> {
       final appVersion = packageInfo.version;
       final buildNumber = packageInfo.buildNumber;
 
+      final storage = manualSl.get<PersistentStorage>();
+      final isFirstTimer = await storage.read(
+        key: StorageKeys.isFirstTimer.keyString,
+      );
+
+      logE('isFirstTimer: $isFirstTimer');
+
       emit(
         AppMetaDataLoaded(
           deviceId: deviceId ?? '',
@@ -66,6 +76,7 @@ class AppMetaDataCubit extends BaseCubit<AppMetaDataState> {
           osVersion: osVersion,
           appVersion: appVersion,
           buildNumber: buildNumber,
+          isFirstTimer: isFirstTimer,
         ),
       );
     } catch (error, stackTrace) {

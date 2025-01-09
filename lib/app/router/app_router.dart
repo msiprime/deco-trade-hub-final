@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template_by_msi/app/screens/screens.dart';
 import 'package:flutter_template_by_msi/features/onboarding/presentation/view/onboarding_view.dart';
+import 'package:flutter_template_by_msi/features/onboarding/presentation/view/role_prompt_page.dart';
 import 'package:go_router/go_router.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>(
@@ -16,8 +17,10 @@ final GoRouter appRouter = GoRouter(
   navigatorKey: _rootNavigatorKey,
   routes: [
     _buildSplashScreenRoute(),
+    _buildOnBoardingViewRoute(),
     _buildHomeScreenRoute(),
     _buildErrorScreenRoute(),
+    _buildRolePromptRoute(),
   ],
 );
 
@@ -43,17 +46,23 @@ GoRoute _buildSplashScreenRoute() => GoRoute(
       pageBuilder: _getDefaultPageBuilderByPlatform(
         childBuilder: (_, __) => const SplashScreen(),
       ),
-      routes: [
-        _buildOnBoardingRoute(),
-      ],
     );
 
-GoRoute _buildOnBoardingRoute() => GoRoute(
+GoRoute _buildOnBoardingViewRoute() => GoRoute(
       parentNavigatorKey: _rootNavigatorKey,
       name: OnBoardingView.routeName,
       path: OnBoardingView.routeName,
       pageBuilder: _getDefaultPageBuilderByPlatform(
         childBuilder: (_, __) => const OnBoardingView(),
+      ),
+    );
+
+GoRoute _buildRolePromptRoute() => GoRoute(
+      parentNavigatorKey: _rootNavigatorKey,
+      name: RolePromptPage.routeName,
+      path: RolePromptPage.routeName,
+      pageBuilder: _getDefaultPageBuilderByPlatform(
+        childBuilder: (_, __) => const RolePromptPage(),
       ),
     );
 

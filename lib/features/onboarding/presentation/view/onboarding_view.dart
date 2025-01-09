@@ -2,15 +2,19 @@ import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_template_by_msi/app/router/app_router.dart';
+import 'package:flutter_template_by_msi/app/screens/error_screen/error_screen.dart';
 import 'package:flutter_template_by_msi/features/onboarding/presentation/widget/widget.dart';
 import 'package:flutter_template_by_msi/services/dependencies/src/dependency_injection.dart';
+import 'package:flutter_template_by_msi/services/global/enums.dart';
+import 'package:go_router/go_router.dart';
 import 'package:persistent_storage/persistent_storage.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingView extends HookWidget {
   const OnBoardingView({super.key});
 
-  static const routeName = 'onboarding_view';
+  static const routeName = '/onboarding_view';
 
   @override
   Widget build(BuildContext context) {
@@ -46,26 +50,18 @@ class OnBoardingView extends HookWidget {
                       ),
                     ),
                     onPressed: () async {
-                      // Await the storage instance
-
                       try {
                         final storage = manualSl.get<PersistentStorage>();
-                      } catch (e) {
-                        await context.showInfoDialog(
-                          title: 'error',
-                          content: e.toString(),
+                        await storage.write(
+                          key: StorageKeys.isFirstTimer.keyString,
+                          value: 'false',
                         );
+                        clearAllRoutesAndGoToNamed(
+                          RolePromptPage.routeName,
+                        );
+                      } catch (e) {
+                        context.goNamed(ErrorScreen.routeName);
                       }
-
-                      // Write to storage
-                      // await storage.write(key: 'firstTimer', value: 'false');
-
-                      // Show dialog with the value from storage
-                      //First Timer: ${await storage.read(key: 'firstTimer')}
-                      await context.showInfoDialog(
-                        title: 'Welcome',
-                        content: '',
-                      );
                     },
                     child: const Text('Next'),
                   )

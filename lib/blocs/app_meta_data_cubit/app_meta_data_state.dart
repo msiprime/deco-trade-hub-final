@@ -36,6 +36,9 @@ sealed class AppMetaDataState {
   ///
   /// Returns an empty string if either appVersion or buildNumber is empty.
   String get appVersionAndBuildNumberString => '';
+
+  /// Returns `true` if this is the first time the app is being run.
+  String? get isFirstTimer => '';
 }
 
 /// Represents the initial state when the app meta data has not been loaded yet.
@@ -59,7 +62,11 @@ final class AppMetaDataLoaded extends AppMetaDataState {
     required this.osVersion,
     required this.appVersion,
     required this.buildNumber,
+    required this.isFirstTimer,
   });
+
+  @override
+  final String? isFirstTimer;
 
   @override
   final String deviceId;
