@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template_by_msi/app/screens/screens.dart';
+import 'package:flutter_template_by_msi/features/Authentication/presentation/signin/view/signin_view.dart';
+import 'package:flutter_template_by_msi/features/Authentication/presentation/signup/view/signup_view.dart';
 import 'package:flutter_template_by_msi/features/onboarding/presentation/view/onboarding_view.dart';
 import 'package:flutter_template_by_msi/features/onboarding/presentation/view/role_prompt_page.dart';
 import 'package:go_router/go_router.dart';
@@ -64,6 +66,26 @@ GoRoute _buildRolePromptRoute() => GoRoute(
       pageBuilder: _getDefaultPageBuilderByPlatform(
         childBuilder: (_, __) => const RolePromptPage(),
       ),
+      routes: [
+        GoRoute(
+          parentNavigatorKey: _rootNavigatorKey,
+          path: SignUpPage.routeName,
+          name: SignUpPage.routeName,
+          pageBuilder: _getDefaultPageBuilderByPlatform(
+            childBuilder: (_, state) => SignUpPage(
+              userRole: state.extra.toString(),
+            ),
+          ),
+        ),
+        GoRoute(
+          parentNavigatorKey: _rootNavigatorKey,
+          path: SignInPage.routeName,
+          name: SignInPage.routeName,
+          pageBuilder: _getDefaultPageBuilderByPlatform(
+            childBuilder: (_, __) => const SignInPage(),
+          ),
+        ),
+      ],
     );
 
 GoRoute _buildHomeScreenRoute() => GoRoute(

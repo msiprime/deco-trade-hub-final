@@ -5,3 +5,12 @@ enum StorageKeys {
 
   final String keyString;
 }
+
+enum UserRole {
+  isRetailer('Retailer'),
+  isWholesaler('Wholesaler');
+
+  const UserRole(this.value);
+
+  final String value;
+}

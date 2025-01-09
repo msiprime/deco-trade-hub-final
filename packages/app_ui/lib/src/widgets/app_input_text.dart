@@ -19,7 +19,7 @@ class AppTextField extends StatelessWidget {
     this.textAlign = TextAlign.start,
     super.key,
     this.hintText,
-    this.textController,
+    this.controller,
     this.errorText,
     this.onTap,
     this.hintStyle,
@@ -87,7 +87,7 @@ class AppTextField extends StatelessWidget {
     String? labelText,
     String? errorText,
     String? initialValue,
-    TextEditingController? textController,
+    TextEditingController? controller,
     VoidCallback? onTap,
     FocusNode? focusNode,
     void Function(String)? onChanged,
@@ -204,7 +204,7 @@ class AppTextField extends StatelessWidget {
           textAlignVertical: textAlignVertical,
           textDirection: textDirection,
           contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-          textController: textController,
+          controller: controller,
           initialValue: initialValue,
           focusNode: focusNode,
           textInputType: textInputType,
@@ -346,7 +346,7 @@ class AppTextField extends StatelessWidget {
           textAlignVertical: textAlignVertical,
           textDirection: textDirection,
           contentPadding: contentPadding,
-          textController: textController,
+          controller: textController,
           initialValue: initialValue,
           focusNode: focusNode,
           textInputType: textInputType,
@@ -375,7 +375,7 @@ class AppTextField extends StatelessWidget {
         );
 
   final String? hintText, labelText, errorText, initialValue;
-  final TextEditingController? textController;
+  final TextEditingController? controller;
   final VoidCallback? onTap;
   final FocusNode? focusNode;
   final void Function(String)? onChanged;
@@ -445,7 +445,7 @@ class AppTextField extends StatelessWidget {
         );
       },
       autofillHints: autofillHints,
-      controller: textController,
+      controller: controller,
       initialValue: initialValue,
       focusNode: focusNode,
       keyboardType: textInputType,

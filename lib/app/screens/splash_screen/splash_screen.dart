@@ -38,7 +38,6 @@ class _SplashScreenState extends State<SplashScreen> {
               } else {
                 context.goNamed(OnBoardingView.routeName);
               }
-
             case AppMetaDataLoadingFailed():
               context.goNamed(ErrorScreen.routeName);
           }
