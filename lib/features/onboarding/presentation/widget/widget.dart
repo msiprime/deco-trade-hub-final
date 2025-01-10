@@ -3,8 +3,8 @@
 
 library onboarding_widget;
 
+export '../../../Authentication/presentation/shared/widget/role_prompt_page.dart';
 // Export all the widget files here
 export 'onboarding_page_1.dart';
 export 'onboarding_page_2.dart';
 export 'onboarding_page_3.dart';
-export '../view/role_prompt_page.dart';

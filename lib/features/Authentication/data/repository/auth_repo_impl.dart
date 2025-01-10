@@ -1,5 +1,10 @@
 import 'package:flutter_template_by_msi/features/Authentication/data/data_source/auth_datasource.dart';
 import 'package:flutter_template_by_msi/features/Authentication/domain/repository/auth_repo.dart';
+import 'package:flutter_template_by_msi/services/dependencies/dependency_injection.dart';
+import 'package:flutter_template_by_msi/services/global/enums.dart';
+import 'package:flutter_template_by_msi/services/global/failures.dart';
+import 'package:fpdart/fpdart.dart';
+import 'package:persistent_storage/persistent_storage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthRepoImpl implements AuthRepo {
@@ -9,28 +14,134 @@ class AuthRepoImpl implements AuthRepo {
   final AuthDataSource _authDataSource;
 
   @override
-  Future<User> getCurrentUser() {
+  Future<Either<Failure, User>> getCurrentUser() {
     throw UnimplementedError();
   }
 
   @override
-  Future<User> signIn({required String email, required String password}) {
-    throw UnimplementedError();
+  Future<Either<Failure, User>> signIn({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final response = await _authDataSource.signIn(
+        email: email,
+        password: password,
+      );
+
+      final session = response.session;
+      final user = response.user;
+
+      if (session != null) {
+        await _saveSession(session);
+      }
+
+      if (user != null) {
+        return right(user);
+      } else {
+        return left(const Failure('User Not Found'));
+      }
+    } on AuthException catch (e) {
+      return left(Failure(e.message));
+    } catch (e) {
+      return left(Failure(e.toString()));
+    }
   }
 
   @override
-  Future<void> signOut() {
-    throw UnimplementedError();
+  Future<void> signOut() async {
+    final storage = manualSl.get<PersistentStorage>();
+    await storage.delete(key: StorageKeys.accessToken.keyString);
+    await storage.delete(key: StorageKeys.refreshToken.keyString);
+
+    return _authDataSource.signOut();
   }
 
   @override
-  Future<User> signUp({
+  Future<Either<Failure, User>> signUp({
     required String email,
     required String password,
     required String fullName,
     required String username,
     required String userRole,
-  }) {
-    throw UnimplementedError();
+  }) async {
+    try {
+      final response = await _authDataSource.signUp(
+        email: email,
+        password: password,
+        fullName: fullName,
+        username: username,
+        userRole: userRole,
+      );
+
+      final session = response.session;
+      final user = response.user;
+
+      if (session != null) {
+        await _saveSession(session);
+      }
+
+      if (user != null) {
+        return right(user);
+      } else {
+        return left(const Failure('Account is Not Created'));
+      }
+    } on AuthException catch (e) {
+      return left(Failure(e.message));
+    } catch (e) {
+      return left(Failure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, User>> checkSession() async {
+    try {
+      final storage = manualSl.get<PersistentStorage>();
+
+      final accessToken = await storage.read(
+        key: StorageKeys.accessToken.keyString,
+      );
+
+      final refreshToken = await storage.read(
+        key: StorageKeys.refreshToken.keyString,
+      );
+
+      if (accessToken != null && refreshToken != null) {
+        final response = await _authDataSource.refreshSession(
+          refreshToken: refreshToken,
+        );
+
+        final session = response.session;
+        final user = response.user;
+
+        if (session != null) {
+          await _saveSession(session);
+        }
+
+        if (user != null) {
+          return right(user);
+        } else {
+          return left(const Failure('User Not Found'));
+        }
+      } else {
+        return left(const Failure('Session Not Found'));
+      }
+    } on AuthException catch (e) {
+      return left(Failure(e.message));
+    } catch (e) {
+      return left(Failure(e.toString()));
+    }
+  }
+
+  Future<void> _saveSession(Session session) async {
+    final storage = manualSl.get<PersistentStorage>();
+    await storage.write(
+      key: StorageKeys.accessToken.keyString,
+      value: session.accessToken,
+    );
+    await storage.write(
+      key: StorageKeys.refreshToken.keyString,
+      value: session.refreshToken ?? '',
+    );
   }
 }

@@ -1,12 +1,12 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract interface class AuthDataSource {
-  Future<User> signIn({
+  Future<AuthResponse> signIn({
     required String email,
     required String password,
   });
 
-  Future<User> signUp({
+  Future<AuthResponse> signUp({
     required String email,
     required String password,
     required String fullName,
@@ -17,4 +17,8 @@ abstract interface class AuthDataSource {
   Future<void> signOut();
 
   Future<User> getCurrentUser();
+
+  Future<AuthResponse> refreshSession({
+    required String refreshToken,
+  });
 }

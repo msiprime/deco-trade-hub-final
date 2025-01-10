@@ -96,7 +96,6 @@ class ServiceProvider {
 /// registered otherwise by annotations.
 @module
 abstract class RegisterModule {
-  // TODO(msi): add manually registered services here.
   @Named(DependencyInjectionInstances.incrementValue)
   int get incrementValue => 1;
 

@@ -1,6 +1,10 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_template_by_msi/app/router/app_router.dart';
+import 'package:flutter_template_by_msi/app/screens/home_screen/home_screen.dart';
+import 'package:flutter_template_by_msi/features/Authentication/data/data_source/auth_datasource_impl.dart';
+import 'package:flutter_template_by_msi/features/Authentication/data/repository/auth_repo_impl.dart';
 import 'package:flutter_template_by_msi/features/Authentication/presentation/signin/bloc/signin_bloc.dart';
 
 class SignInPage extends StatelessWidget {
@@ -10,9 +14,12 @@ class SignInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SignInBloc(),
-      child: SignInView(),
+    return RepositoryProvider(
+      create: (context) => AuthRepoImpl(authDataSource: AuthDataSourceImpl()),
+      child: BlocProvider(
+        create: (context) => SignInBloc(authRepo: context.read<AuthRepoImpl>()),
+        child: SignInView(),
+      ),
     );
   }
 }
@@ -34,7 +41,20 @@ class SignInView extends StatelessWidget {
                   key: _formKey,
                   child: Padding(
                     padding: const EdgeInsets.all(16),
-                    child: BlocBuilder<SignInBloc, SignInState>(
+                    child: BlocConsumer<SignInBloc, SignInState>(
+                      listener: (context, state) {
+                        if (state.status == SignInStatus.success) {
+                          clearAllRoutesAndGoToNamed(HomeScreen.routeName);
+                        }
+
+                        if (state.status == SignInStatus.failure) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(state.errorMessage),
+                            ),
+                          );
+                        }
+                      },
                       builder: (context, state) {
                         return Column(
                           children: [
@@ -42,31 +62,34 @@ class SignInView extends StatelessWidget {
                               'Welcome to Deco Trade Hub',
                               style: context.titleLarge,
                             ),
-
                             GapSpacing.lg,
                             AppTextField.roundedBorder(
-                              onChanged: (value) {},
+                              onChanged: (value) {
+                                context
+                                    .read<SignInBloc>()
+                                    .add(EmailChanged(email: value));
+                              },
                               labelText: 'Email',
                             ),
                             GapSpacing.lg,
                             AppTextField.roundedBorder(
-                              onChanged: (value) {},
+                              onChanged: (value) {
+                                context
+                                    .read<SignInBloc>()
+                                    .add(PasswordChanged(password: value));
+                              },
                               labelText: 'Password',
                             ),
                             GapSpacing.lg,
-                            // Text(state.email),
-                            // Text(state.password),
-
                             ElevatedButton(
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                        content: Text('Sign Up Successful')),
-                                  );
+                                  context
+                                      .read<SignInBloc>()
+                                      .add(const LoginSubmitted());
                                 }
                               },
-                              child: const Text('Sign Up'),
+                              child: const Text('Sign In'),
                             ),
                           ],
                         );

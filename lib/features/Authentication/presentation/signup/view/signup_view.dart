@@ -1,6 +1,10 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_template_by_msi/app/router/app_router.dart';
+import 'package:flutter_template_by_msi/app/screens/home_screen/src/ui/home_screen.dart';
+import 'package:flutter_template_by_msi/features/Authentication/data/data_source/auth_datasource_impl.dart';
+import 'package:flutter_template_by_msi/features/Authentication/data/repository/auth_repo_impl.dart';
 import 'package:flutter_template_by_msi/features/Authentication/presentation/signup/bloc/signup_bloc.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -15,9 +19,16 @@ class SignUpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SignUpBloc()..add(UserRoleChanged(userRole)),
-      child: SignupView(),
+    return RepositoryProvider(
+      create: (context) => AuthRepoImpl(
+        authDataSource: AuthDataSourceImpl(),
+      ),
+      child: BlocProvider(
+        create: (context) => SignUpBloc(
+          authRepo: context.read<AuthRepoImpl>(),
+        )..add(UserRoleChanged(userRole)),
+        child: SignupView(),
+      ),
     );
   }
 }
@@ -42,7 +53,34 @@ class SignupView extends StatelessWidget {
                   key: _formKey,
                   child: Padding(
                     padding: const EdgeInsets.all(16),
-                    child: BlocBuilder<SignUpBloc, SignUpState>(
+                    child: BlocConsumer<SignUpBloc, SignUpState>(
+                      listener: (context, state) {
+                        if (state.status == SignUpStatus.submitting) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Signing Up...'),
+                            ),
+                          );
+                        }
+
+                        if (state.status == SignUpStatus.failure) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(state.errorMessage),
+                            ),
+                          );
+                        }
+
+                        if (state.status == SignUpStatus.success) {
+                          clearAllRoutesAndGoToNamed(HomeScreen.routeName);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Sign Up Successful'),
+                            ),
+                          );
+                          // clearAllRoutesAndGoToNamed(HomeScreen.routeName);
+                        }
+                      },
                       builder: (context, state) {
                         return Column(
                           children: [
@@ -95,10 +133,9 @@ class SignupView extends StatelessWidget {
                             ElevatedButton(
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                        content: Text('Sign Up Successful')),
-                                  );
+                                  context
+                                      .read<SignUpBloc>()
+                                      .add(FormSubmitted());
                                 }
                               },
                               child: const Text('Sign Up'),

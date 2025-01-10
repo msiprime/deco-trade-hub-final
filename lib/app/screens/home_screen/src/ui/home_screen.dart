@@ -1,7 +1,10 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_template_by_msi/app/router/app_router.dart';
 import 'package:flutter_template_by_msi/app/screens/home_screen/src/cubit/counter_cubit.dart';
+import 'package:flutter_template_by_msi/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
+import 'package:flutter_template_by_msi/features/Authentication/presentation/signin/view/signin_view.dart';
 import 'package:flutter_template_by_msi/services/dependencies/src/dependency_injection.dart';
 import 'package:flutter_template_by_msi/ui/widgets/global/base_language_dropdown.dart';
 import 'package:flutter_template_by_msi/ui/widgets/widgets.dart';
@@ -39,6 +42,13 @@ class HomeScreen extends StatelessWidget {
                       },
                     ),
                   ),
+                  const SizedBox(height: 10),
+                  BaseFilledButton(
+                    text: 'Press Here',
+                    onPressed: () async {},
+                    backgroundColor: AppColorsTheme.green,
+                  ),
+                  const SizedBox(height: 10),
                   BaseFilledButton(
                     text: 'Increment',
                     onPressed: context.read<CounterCubit>().increment,
@@ -59,6 +69,24 @@ class HomeScreen extends StatelessWidget {
                   const LanguageDropdown(),
                   const SizedBox(height: 10),
                   const LanguageDropdown2(),
+                  BlocConsumer<AuthCubit, AuthState>(
+                    listener: (context, state) {
+                      if (state is UnAuthenticated) {
+                        clearAllRoutesAndGoToNamed(SignInPage.routeName);
+                      }
+                    },
+                    builder: (context, state) {
+                      if (state is AuthLoading) {
+                        return const CircularProgressIndicator();
+                      }
+                      return IconButton(
+                        onPressed: () {
+                          context.read<AuthCubit>().signOut();
+                        },
+                        icon: const Icon(Icons.logout),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),

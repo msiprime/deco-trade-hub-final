@@ -1,5 +1,7 @@
 part of 'signup_bloc.dart';
 
+enum SignUpStatus { initial, submitting, success, failure }
+
 class SignUpState extends Equatable {
   const SignUpState({
     required this.email,
@@ -7,29 +9,36 @@ class SignUpState extends Equatable {
     required this.password,
     required this.username,
     required this.userRole,
-    this.isSubmitting = false,
-    this.isSuccess = false,
-    this.isFailure = false,
+    this.status = SignUpStatus.initial,
+    this.errorMessage = '',
   });
 
-  factory SignUpState.initial() {
-    return const SignUpState(
-      email: '',
-      password: '',
-      username: '',
-      fullName: '',
-      userRole: 'Retailer',
-    );
-  }
+  // factory SignUpState.initial() {
+  //   return const SignUpState(
+  //     email: '',
+  //     password: '',
+  //     username: '',
+  //     fullName: '',
+  //     userRole: 'Retailer',
+  //   );
+  // }
+
+  const SignUpState.initial()
+      : email = '',
+        password = '',
+        username = '',
+        fullName = '',
+        userRole = 'Retailer',
+        status = SignUpStatus.initial,
+        errorMessage = '';
 
   final String email;
   final String password;
   final String username;
   final String fullName;
   final String userRole;
-  final bool isSubmitting;
-  final bool isSuccess;
-  final bool isFailure;
+  final SignUpStatus status;
+  final String errorMessage;
 
   SignUpState copyWith({
     String? email,
@@ -37,9 +46,8 @@ class SignUpState extends Equatable {
     String? username,
     String? fullName,
     String? userRole,
-    bool? isSubmitting,
-    bool? isSuccess,
-    bool? isFailure,
+    SignUpStatus? status,
+    String? errorMessage,
   }) {
     return SignUpState(
       email: email ?? this.email,
@@ -47,9 +55,8 @@ class SignUpState extends Equatable {
       fullName: fullName ?? this.fullName,
       username: username ?? this.username,
       userRole: userRole ?? this.userRole,
-      isSubmitting: isSubmitting ?? this.isSubmitting,
-      isSuccess: isSuccess ?? this.isSuccess,
-      isFailure: isFailure ?? this.isFailure,
+      status: status ?? this.status,
+      errorMessage: errorMessage ?? this.errorMessage,
     );
   }
 
@@ -59,9 +66,8 @@ class SignUpState extends Equatable {
         password,
         username,
         fullName,
-        isSubmitting,
-        isSuccess,
-        isFailure,
         userRole,
+        status,
+        errorMessage,
       ];
 }

@@ -1,5 +1,7 @@
 enum StorageKeys {
-  isFirstTimer('isFirstTimer');
+  isFirstTimer('is_first_timer'),
+  accessToken('access_token'),
+  refreshToken('refresh_token');
 
   const StorageKeys(this.keyString);
 

@@ -7,6 +7,9 @@ import 'package:flutter_template_by_msi/app/view/global_keys.dart';
 import 'package:flutter_template_by_msi/blocs/app_meta_data_cubit/app_meta_data_cubit.dart';
 import 'package:flutter_template_by_msi/blocs/localization_cubit/localization_cubit.dart';
 import 'package:flutter_template_by_msi/blocs/theme_cubit/theme_cubit.dart';
+import 'package:flutter_template_by_msi/features/Authentication/data/data_source/auth_datasource_impl.dart';
+import 'package:flutter_template_by_msi/features/Authentication/data/repository/auth_repo_impl.dart';
+import 'package:flutter_template_by_msi/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
 import 'package:flutter_template_by_msi/services/dependencies/src/dependency_injection.dart';
 import 'package:localization/localization.dart';
 
@@ -36,6 +39,11 @@ class _AppState extends State<App> {
           ),
           BlocProvider<AppMetaDataCubit>(
             create: (_) => ServiceProvider.get<AppMetaDataCubit>(),
+          ),
+          BlocProvider<AuthCubit>(
+            create: (_) => AuthCubit(
+              authRepo: AuthRepoImpl(authDataSource: AuthDataSourceImpl()),
+            )..checkSession(),
           ),
         ],
         child: Builder(

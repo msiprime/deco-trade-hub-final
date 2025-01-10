@@ -1,12 +1,14 @@
+import 'package:flutter_template_by_msi/services/global/failures.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract interface class AuthRepo {
-  Future<User> signIn({
+  Future<Either<Failure, User>> signIn({
     required String email,
     required String password,
   });
 
-  Future<User> signUp({
+  Future<Either<Failure, User>> signUp({
     required String email,
     required String password,
     required String fullName,
@@ -16,5 +18,7 @@ abstract interface class AuthRepo {
 
   Future<void> signOut();
 
-  Future<User> getCurrentUser();
+  Future<Either<Failure, User>> getCurrentUser();
+
+  Future<Either<Failure, User>> checkSession();
 }
