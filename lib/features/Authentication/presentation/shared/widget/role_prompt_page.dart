@@ -1,6 +1,7 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:flutter_template_by_msi/app/screens/home_screen/src/ui/home_screen.dart';
 import 'package:flutter_template_by_msi/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
 import 'package:flutter_template_by_msi/features/Authentication/presentation/signin/view/signin_view.dart';
@@ -43,9 +44,14 @@ class RolePromptView extends StatelessWidget {
       builder: (context, state) {
         return switch (state) {
           AuthInitial() => const CircularProgressIndicator(),
-          AuthLoading() => const BaseScreenWidget(
+          AuthLoading() => BaseScreenWidget(
               loading: true,
-              body: Center(child: FlutterLogo(size: 300)),
+              body: Center(
+                  child: SvgPicture.asset(
+                'assets/svg/splash_deco_trade_hub.svg',
+                width: 300,
+                height: 300,
+              )),
             ),
           Authenticated() => const HomeScreen(),
           UnAuthenticated() => Scaffold(

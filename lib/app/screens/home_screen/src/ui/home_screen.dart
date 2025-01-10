@@ -6,6 +6,7 @@ import 'package:flutter_template_by_msi/app/screens/home_screen/src/cubit/counte
 import 'package:flutter_template_by_msi/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
 import 'package:flutter_template_by_msi/features/Authentication/presentation/signin/view/signin_view.dart';
 import 'package:flutter_template_by_msi/services/dependencies/src/dependency_injection.dart';
+import 'package:flutter_template_by_msi/ui/custom/deco_trade_hub_splash_logo.dart';
 import 'package:flutter_template_by_msi/ui/widgets/global/base_language_dropdown.dart';
 import 'package:flutter_template_by_msi/ui/widgets/widgets.dart';
 import 'package:localization/localization.dart';
@@ -43,6 +44,8 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 10),
+                  const DecoTradeHubSplashLogo(),
+                  const SizedBox(height: 10),
                   BaseFilledButton(
                     text: 'Press Here',
                     onPressed: () async {},
@@ -69,6 +72,7 @@ class HomeScreen extends StatelessWidget {
                   const LanguageDropdown(),
                   const SizedBox(height: 10),
                   const LanguageDropdown2(),
+                  const SizedBox(height: 10),
                   BlocConsumer<AuthCubit, AuthState>(
                     listener: (context, state) {
                       if (state is UnAuthenticated) {
@@ -79,7 +83,8 @@ class HomeScreen extends StatelessWidget {
                       if (state is AuthLoading) {
                         return const CircularProgressIndicator();
                       }
-                      return IconButton(
+                      return FilledButton.icon(
+                        label: const Text('Log Out'),
                         onPressed: () {
                           context.read<AuthCubit>().signOut();
                         },

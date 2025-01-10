@@ -53,6 +53,7 @@ dependencies:
   smooth_page_indicator: ^1.2.0+3
   shared_preferences: ^2.3.5
   fpdart: ^1.1.1
+  flutter_svg: ^2.0.17
 
 
 dev_dependencies:
@@ -71,6 +72,7 @@ flutter:
   assets:
     - .env
     - assets/images/common/
+    - assets/svg/
   fonts: # TODO(msi): use your own fonts if needed
     - family: consolas
       fonts:
