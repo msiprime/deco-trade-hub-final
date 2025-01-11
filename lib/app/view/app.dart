@@ -76,7 +76,7 @@ class _AppState extends State<App> {
                   );
 
                   // Wrap the result with a scaffold with a global key
-                  // to be used to show snackbars from anywhere in the app
+                  // to be used to show snack bars from anywhere in the app
                   result = Scaffold(
                     key: globalScaffoldKey,
                     resizeToAvoidBottomInset: false,
