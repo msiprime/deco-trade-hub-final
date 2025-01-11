@@ -29,6 +29,12 @@ class RetailerRoute extends StatelessWidget {
         ),
       ],
       controller: PersistentTabController(),
+      animationSettings: const NavBarAnimationSettings(
+        screenTransitionAnimation: ScreenTransitionAnimationSettings(
+          animateTabTransition: true,
+          duration: Duration(milliseconds: 200),
+        ),
+      ),
     );
   }
 }
