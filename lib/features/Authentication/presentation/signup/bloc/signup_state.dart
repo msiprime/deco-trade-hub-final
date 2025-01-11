@@ -28,7 +28,7 @@ class SignUpState extends Equatable {
         password = '',
         username = '',
         fullName = '',
-        userRole = 'Retailer',
+        userRole = '',
         status = SignUpStatus.initial,
         errorMessage = '';
 

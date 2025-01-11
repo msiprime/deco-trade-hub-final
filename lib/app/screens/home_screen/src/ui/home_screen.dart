@@ -62,36 +62,18 @@ class HomeScreen extends StatelessWidget {
                     text: 'Decrement',
                     onPressed: context.read<CounterCubit>().decrement,
                   ),
-                  const Text('data'),
                   BlocBuilder<AuthCubit, AuthState>(
                     builder: (context, state) {
                       if (state is Authenticated) {
+                        final userMetaData = state.user.userMetadata;
+
+                        final name = userMetaData?['role'];
                         return Column(
                           children: [
                             Text(
-                              'User: ${state.user.id}',
-                              style: context.appTextTheme.body4,
-                            ),
-                            const SizedBox(height: 10),
-                            Text(
-                              'Email: ${state.user.email}',
-                              style: context.appTextTheme.body4,
-                            ),
-                            Text(
-                              'app meta data: ${state.user.appMetadata}',
-                              style: context.appTextTheme.body4,
-                            ),
-                            Text(
-                              'last sign: ${state.user.lastSignInAt}',
-                              style: context.appTextTheme.body4,
-                            ),
-                            Text(
-                              'aud: ${state.user.aud}',
-                              style: context.appTextTheme.body4,
-                            ),
-                            Text(
-                              'role: ${state.user.role}',
-                              style: context.appTextTheme.body4,
+                              'User: ${state.user.userMetadata}'
+                              'Name: $name',
+                              style: context.appTextTheme.body6,
                             ),
                           ],
                         );

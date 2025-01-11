@@ -2,10 +2,11 @@ import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_template_by_msi/app/screens/home_screen/src/ui/home_screen.dart';
 import 'package:flutter_template_by_msi/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
 import 'package:flutter_template_by_msi/features/Authentication/presentation/signin/view/signin_view.dart';
 import 'package:flutter_template_by_msi/features/Authentication/presentation/signup/view/signup_view.dart';
+import 'package:flutter_template_by_msi/features/home/presentation/retailer/view/retailer_home_page.dart';
+import 'package:flutter_template_by_msi/features/home/presentation/wholesaler/view/wholesaler_home_page.dart';
 import 'package:flutter_template_by_msi/services/global/enums.dart';
 import 'package:go_router/go_router.dart';
 
@@ -47,13 +48,19 @@ class RolePromptView extends StatelessWidget {
           AuthLoading() => BaseScreenWidget(
               loading: true,
               body: Center(
-                  child: SvgPicture.asset(
-                'assets/svg/splash_deco_trade_hub.svg',
-                width: 300,
-                height: 300,
-              )),
+                child: SvgPicture.asset(
+                  'assets/svg/splash_deco_trade_hub.svg',
+                  width: 300,
+                  height: 300,
+                ),
+              ),
             ),
-          Authenticated() => const HomeScreen(),
+          Authenticated() => (state.user.userMetadata != null &&
+                  state.user.userMetadata!['role'] != null)
+              ? (state.user.userMetadata!['role'] == UserRole.isRetailer.value)
+                  ? const RetailerHomePage()
+                  : const WholesalerHomePage()
+              : const SignInPage(),
           UnAuthenticated() => Scaffold(
               appBar: AppBar(
                 elevation: 0,

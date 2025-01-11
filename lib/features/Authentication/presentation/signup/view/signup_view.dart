@@ -2,10 +2,10 @@ import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template_by_msi/app/router/app_router.dart';
-import 'package:flutter_template_by_msi/app/screens/home_screen/src/ui/home_screen.dart';
 import 'package:flutter_template_by_msi/features/Authentication/data/data_source/auth_datasource_impl.dart';
 import 'package:flutter_template_by_msi/features/Authentication/data/repository/auth_repo_impl.dart';
 import 'package:flutter_template_by_msi/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
+import 'package:flutter_template_by_msi/features/Authentication/presentation/shared/widget/role_prompt_page.dart';
 import 'package:flutter_template_by_msi/features/Authentication/presentation/signup/bloc/signup_bloc.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -74,13 +74,12 @@ class SignupView extends StatelessWidget {
                         }
 
                         if (state.status == SignUpStatus.success) {
-                          clearAllRoutesAndGoToNamed(HomeScreen.routeName);
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content: Text('Sign Up Successful'),
                             ),
                           );
-                          // clearAllRoutesAndGoToNamed(HomeScreen.routeName);
+                          clearAllRoutesAndGoToNamed(RolePromptPage.routeName);
                         }
                       },
                       builder: (context, state) {
@@ -127,6 +126,7 @@ class SignupView extends StatelessWidget {
                               labelText: 'Password',
                             ),
                             GapSpacing.lg,
+                            Text(state.userRole),
                             Text(state.userRole),
                             Text(state.email),
                             Text(state.fullName),
