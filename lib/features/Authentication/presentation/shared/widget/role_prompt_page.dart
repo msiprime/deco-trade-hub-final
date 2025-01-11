@@ -5,8 +5,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter_template_by_msi/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
 import 'package:flutter_template_by_msi/features/Authentication/presentation/signin/view/signin_view.dart';
 import 'package:flutter_template_by_msi/features/Authentication/presentation/signup/view/signup_view.dart';
-import 'package:flutter_template_by_msi/features/home/presentation/retailer/view/retailer_home_page.dart';
-import 'package:flutter_template_by_msi/features/home/presentation/wholesaler/view/wholesaler_home_page.dart';
+import 'package:flutter_template_by_msi/features/home/presentation/retailer/navigation/retailer_bottom_navbar.dart';
+import 'package:flutter_template_by_msi/features/home/presentation/wholesaler/navigation/wholesaler_bottom_navbar.dart';
 import 'package:flutter_template_by_msi/services/global/enums.dart';
 import 'package:go_router/go_router.dart';
 
@@ -58,8 +58,8 @@ class RolePromptView extends StatelessWidget {
           Authenticated() => (state.user.userMetadata != null &&
                   state.user.userMetadata!['role'] != null)
               ? (state.user.userMetadata!['role'] == UserRole.isRetailer.value)
-                  ? const RetailerHomePage()
-                  : const WholesalerHomePage()
+                  ? const RetailerRoute()
+                  : const WholesalerRoute()
               : const SignInPage(),
           UnAuthenticated() => Scaffold(
               appBar: AppBar(

@@ -92,29 +92,40 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(height: 10),
                   const LanguageDropdown2(),
                   const SizedBox(height: 10),
-                  BlocConsumer<AuthCubit, AuthState>(
-                    listener: (context, state) {
-                      if (state is UnAuthenticated) {
-                        clearAllRoutesAndGoToNamed(SignInPage.routeName);
-                      }
-                    },
-                    builder: (context, state) {
-                      if (state is AuthLoading) {
-                        return const CircularProgressIndicator();
-                      }
-                      return FilledButton.icon(
-                        label: const Text('Log Out'),
-                        onPressed: () {
-                          context.read<AuthCubit>().signOut();
-                        },
-                        icon: const Icon(Icons.logout),
-                      );
-                    },
-                  ),
+                  const SignOutButton(),
                 ],
               ),
             ),
           ),
         ),
       );
+}
+
+class SignOutButton extends StatelessWidget {
+  const SignOutButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<AuthCubit, AuthState>(
+      listener: (context, state) {
+        if (state is UnAuthenticated) {
+          clearAllRoutesAndGoToNamed(SignInPage.routeName);
+        }
+      },
+      builder: (context, state) {
+        if (state is AuthLoading) {
+          return const CircularProgressIndicator();
+        }
+        return FilledButton.icon(
+          label: const Text('Log Out'),
+          onPressed: () {
+            context.read<AuthCubit>().signOut();
+          },
+          icon: const Icon(Icons.logout),
+        );
+      },
+    );
+  }
 }

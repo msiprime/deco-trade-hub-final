@@ -1,6 +1,5 @@
+import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template_by_msi/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
 
 class WholesalerHomePage extends StatelessWidget {
   const WholesalerHomePage({super.key});
@@ -11,29 +10,22 @@ class WholesalerHomePage extends StatelessWidget {
   }
 }
 
-class WholesalerHomeView extends StatelessWidget {
+class WholesalerHomeView extends StatefulWidget {
   const WholesalerHomeView({super.key});
 
   @override
+  State<WholesalerHomeView> createState() => _WholesalerHomeViewState();
+}
+
+class _WholesalerHomeViewState extends State<WholesalerHomeView> {
+  @override
   Widget build(BuildContext context) {
-    return ColoredBox(
-      color: Colors.white,
-      child: Center(
-        child: BlocBuilder<AuthCubit, AuthState>(
-          builder: (context, state) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Wholesaler Home Page'),
-                if (state is Authenticated)
-                  Center(
-                      child:
-                          Text('Welcome ${state.user.userMetadata!['role']}')),
-              ],
-            );
-          },
-        ),
+    return AppScaffold(
+      appBar: AppBar(
+        title: const Text('Wholesaler Home Page'),
+      ),
+      body: const Center(
+        child: Text('Wholesaler Home Page'),
       ),
     );
   }
