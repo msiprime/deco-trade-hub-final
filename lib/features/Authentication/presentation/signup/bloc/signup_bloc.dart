@@ -2,15 +2,18 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_template_by_msi/features/Authentication/domain/repository/auth_repo.dart';
+import 'package:flutter_template_by_msi/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
 
 part 'signup_event.dart';
 part 'signup_state.dart';
 
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   SignUpBloc({
+    required AuthCubit authCubit,
     required AuthRepo authRepo,
   })  : _authRepo = authRepo,
-        super(SignUpState.initial()) {
+        _authCubit = authCubit,
+        super(const SignUpState.initial()) {
     on<UserRoleChanged>((event, emit) {
       emit(state.copyWith(userRole: event.userRole));
     });
@@ -52,7 +55,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
               ),
             );
           },
-          (success) {
+          (user) {
+            _authCubit.emit(Authenticated(user));
             emit(state.copyWith(status: SignUpStatus.success));
           },
         );
@@ -71,4 +75,5 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   }
 
   final AuthRepo _authRepo;
+  final AuthCubit _authCubit;
 }

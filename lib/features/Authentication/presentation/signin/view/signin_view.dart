@@ -5,6 +5,7 @@ import 'package:flutter_template_by_msi/app/router/app_router.dart';
 import 'package:flutter_template_by_msi/app/screens/home_screen/home_screen.dart';
 import 'package:flutter_template_by_msi/features/Authentication/data/data_source/auth_datasource_impl.dart';
 import 'package:flutter_template_by_msi/features/Authentication/data/repository/auth_repo_impl.dart';
+import 'package:flutter_template_by_msi/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
 import 'package:flutter_template_by_msi/features/Authentication/presentation/signin/bloc/signin_bloc.dart';
 
 class SignInPage extends StatelessWidget {
@@ -17,7 +18,10 @@ class SignInPage extends StatelessWidget {
     return RepositoryProvider(
       create: (context) => AuthRepoImpl(authDataSource: AuthDataSourceImpl()),
       child: BlocProvider(
-        create: (context) => SignInBloc(authRepo: context.read<AuthRepoImpl>()),
+        create: (context) => SignInBloc(
+          authRepo: context.read<AuthRepoImpl>(),
+          authCubit: context.read<AuthCubit>(),
+        ),
         child: SignInView(),
       ),
     );

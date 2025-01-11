@@ -6,7 +6,6 @@ import 'package:flutter_template_by_msi/app/screens/home_screen/src/cubit/counte
 import 'package:flutter_template_by_msi/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
 import 'package:flutter_template_by_msi/features/Authentication/presentation/signin/view/signin_view.dart';
 import 'package:flutter_template_by_msi/services/dependencies/src/dependency_injection.dart';
-import 'package:flutter_template_by_msi/ui/custom/deco_trade_hub_splash_logo.dart';
 import 'package:flutter_template_by_msi/ui/widgets/global/base_language_dropdown.dart';
 import 'package:flutter_template_by_msi/ui/widgets/widgets.dart';
 import 'package:localization/localization.dart';
@@ -44,7 +43,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  const DecoTradeHubSplashLogo(),
+                  // const DecoTradeHubSplashLogo(),
                   const SizedBox(height: 10),
                   BaseFilledButton(
                     text: 'Press Here',
@@ -62,6 +61,44 @@ class HomeScreen extends StatelessWidget {
                     color: AppColorsTheme.gold,
                     text: 'Decrement',
                     onPressed: context.read<CounterCubit>().decrement,
+                  ),
+                  const Text('data'),
+                  BlocBuilder<AuthCubit, AuthState>(
+                    builder: (context, state) {
+                      if (state is Authenticated) {
+                        return Column(
+                          children: [
+                            Text(
+                              'User: ${state.user.id}',
+                              style: context.appTextTheme.body4,
+                            ),
+                            const SizedBox(height: 10),
+                            Text(
+                              'Email: ${state.user.email}',
+                              style: context.appTextTheme.body4,
+                            ),
+                            Text(
+                              'app meta data: ${state.user.appMetadata}',
+                              style: context.appTextTheme.body4,
+                            ),
+                            Text(
+                              'last sign: ${state.user.lastSignInAt}',
+                              style: context.appTextTheme.body4,
+                            ),
+                            Text(
+                              'aud: ${state.user.aud}',
+                              style: context.appTextTheme.body4,
+                            ),
+                            Text(
+                              'role: ${state.user.role}',
+                              style: context.appTextTheme.body4,
+                            ),
+                          ],
+                        );
+                      }
+
+                      return const SizedBox();
+                    },
                   ),
                   const SizedBox(height: 10),
                   Text(

@@ -5,6 +5,7 @@ import 'package:flutter_template_by_msi/app/router/app_router.dart';
 import 'package:flutter_template_by_msi/app/screens/home_screen/src/ui/home_screen.dart';
 import 'package:flutter_template_by_msi/features/Authentication/data/data_source/auth_datasource_impl.dart';
 import 'package:flutter_template_by_msi/features/Authentication/data/repository/auth_repo_impl.dart';
+import 'package:flutter_template_by_msi/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
 import 'package:flutter_template_by_msi/features/Authentication/presentation/signup/bloc/signup_bloc.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -25,6 +26,7 @@ class SignUpPage extends StatelessWidget {
       ),
       child: BlocProvider(
         create: (context) => SignUpBloc(
+          authCubit: context.read<AuthCubit>(),
           authRepo: context.read<AuthRepoImpl>(),
         )..add(UserRoleChanged(userRole)),
         child: SignupView(),

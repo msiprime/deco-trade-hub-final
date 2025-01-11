@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_template_by_msi/features/Authentication/domain/repository/auth_repo.dart';
+import 'package:flutter_template_by_msi/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
 
 part 'signin_event.dart';
 part 'signin_state.dart';
@@ -8,7 +9,9 @@ part 'signin_state.dart';
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   SignInBloc({
     required AuthRepo authRepo,
+    required AuthCubit authCubit,
   })  : _authRepo = authRepo,
+        _authCubit = authCubit,
         super(const SignInState.initial()) {
     on<EmailChanged>((event, emit) {
       emit(state.copyWith(email: event.email));
@@ -37,6 +40,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
             );
           },
           (user) {
+            _authCubit.emit(Authenticated(user));
             emit(state.copyWith(status: SignInStatus.success));
           },
         );
@@ -52,4 +56,5 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   }
 
   final AuthRepo _authRepo;
+  final AuthCubit _authCubit;
 }
