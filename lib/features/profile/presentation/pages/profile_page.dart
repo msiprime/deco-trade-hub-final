@@ -6,9 +6,9 @@ import 'package:flutter_template_by_msi/features/profile/presentation/blocs/prof
 import 'package:flutter_template_by_msi/features/profile/presentation/widget/profile_store_view.dart';
 
 class ProfilePage extends StatefulWidget {
-  static const String routeName = '/profile';
-
   const ProfilePage({super.key});
+
+  static const String routeName = '/profile';
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -82,6 +82,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      const SizedBox(height: 20),
                       _buildHeaderPart(context, state),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -170,7 +171,6 @@ class _ProfilePageState extends State<ProfilePage> {
         height: 200,
         color: Colors.transparent,
         child: Align(
-          alignment: Alignment.center,
           child: isEditing
               ? const Text('Edit Avatar')
               : DottedBorder(

@@ -15,7 +15,7 @@ class RetailerHomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return const ColoredBox(
       color: Colors.red,
       child: SignOutButton(),
     );
