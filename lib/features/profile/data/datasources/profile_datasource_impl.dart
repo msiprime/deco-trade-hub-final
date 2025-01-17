@@ -1,9 +1,13 @@
 import 'package:flutter_template_by_msi/features/profile/data/datasources/profile_datasource.dart';
 import 'package:flutter_template_by_msi/features/profile/data/models/profile_model.dart';
+import 'package:flutter_template_by_msi/services/dependencies/src/dependency_injection.dart';
+import 'package:shared/shared.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ProfileDataSourceImpl implements ProfileDataSource {
   final SupabaseClient supabaseClient = Supabase.instance.client;
+
+  final _restClient = manualSl.get<RestClient>();
 
   // @override
   //  Future<AuthResponse> signIn({
@@ -20,26 +24,20 @@ class ProfileDataSourceImpl implements ProfileDataSource {
 
   @override
   Future<ProfileModel> fetchProfile() async {
-    // final response = await supabaseClient
-    //     .from('profiles')
-    //     .select()
-    //     .eq('id', supabaseClient.auth.currentUser!.id)
-    //     .single();
-
     try {
-      final response = await supabaseClient
-          .from('profiles')
-          .select()
-          .eq('id', supabaseClient.auth.currentUser!.id)
-          .single();
+      final response = await _restClient.get(
+        'profiles',
+        queryParams: {
+          'id': 'eq.${supabaseClient.auth.currentUser?.id}',
+        },
+      );
+      logE('Get response: $response');
 
-      if (response.isEmpty) {
-        throw Exception('Failed to fetch profile: $response');
-      }
-
-      return ProfileModel.fromJson(response);
+      final listOfResponse = response.data as List<dynamic>;
+      return ProfileModel.fromJson(
+          listOfResponse.first as Map<String, dynamic>);
     } catch (e) {
-      throw Exception('Failed to fetch profile: $e');
+      throw Exception('Failed to fetch profile exception: $e');
     }
   }
 

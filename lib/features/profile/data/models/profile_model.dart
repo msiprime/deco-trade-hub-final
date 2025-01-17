@@ -16,22 +16,22 @@ class ProfileModel {
   factory ProfileModel.fromJson(Map<String, dynamic> json) {
     return ProfileModel(
       id: json['id'] as String,
-      email: json['email'] as String,
-      userName: json['username'] as String,
-      fullName: json['full_name'] as String,
-      mobileNumber: json['phone_number'] as String,
+      email: json['email'] as String?,
+      userName: json['username'] as String?,
+      fullName: json['full_name'] as String?,
+      mobileNumber: json['phone_number'] as String?,
       avatarUrl: json['avatar_url'] as String?,
       website: json['website'] as String?,
-      updatedAt: json['updated_at'] as DateTime?,
+      // updatedAt: json['updated_at'] as DateTime?,
       isVerified: json['verified'] as bool?,
     );
   }
 
   final String id;
-  final String email;
-  final String userName;
-  final String mobileNumber;
-  final String fullName;
+  final String? email;
+  final String? userName;
+  final String? mobileNumber;
+  final String? fullName;
   final String? avatarUrl;
   final String? website;
   final bool? isVerified;
@@ -56,12 +56,12 @@ extension ProfileModelMapper on ProfileModel {
   ProfileEntity toEntity() {
     return ProfileEntity(
       id: id,
-      email: email,
-      userName: userName,
-      fullName: fullName,
-      mobileNumber: mobileNumber,
-      avatarUrl: avatarUrl,
-      website: website,
+      email: email ?? '',
+      userName: userName ?? '',
+      fullName: fullName ?? '',
+      mobileNumber: mobileNumber ?? '',
+      avatarUrl: avatarUrl ?? '',
+      website: website ?? '',
       updatedAt: updatedAt,
       isVerified: isVerified ?? false,
     );

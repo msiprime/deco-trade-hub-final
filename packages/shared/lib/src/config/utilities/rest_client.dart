@@ -34,13 +34,13 @@ class RestClient {
 
   Future<Response<dynamic>> get(
     String path, {
-    Map<String, dynamic>? data,
+    Map<String, dynamic>? queryParams,
     Map<String, dynamic>? headers,
   }) async {
     return _handleRequest(
       () => _dio.get(
         path,
-        queryParameters: data,
+        queryParameters: queryParams,
       ),
     );
   }

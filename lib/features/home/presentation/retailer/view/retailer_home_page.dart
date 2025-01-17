@@ -27,29 +27,31 @@ class RetailerHomeView extends StatelessWidget {
         children: [
           const SignOutButton(),
           IconButton(
-              onPressed: () async {
-                final restClient = manualSl.get<RestClient>();
+            onPressed: () async {
+              final restClient = manualSl.get<RestClient>();
 
-                try {
-                  final response = await restClient.get('profiles');
-                  logE('Get response: $response');
-                  final response2 = await restClient.patch(
-                    'profiles',
-                    {
-                      'full_name': 'Msi Sakib lol',
-                      'username': 'msiprime',
-                    },
-                    queryParams: {
-                      'id':
-                          'eq.${Supabase.instance.client.auth.currentUser?.id}',
-                    },
-                  );
-                  logE('Insert response: $response2');
-                } catch (e) {
-                  logE('Error: $e');
-                }
-              },
-              icon: const Icon(Icons.add)),
+              try {
+                final response = await restClient.get('profiles', queryParams: {
+                  'id': 'eq.${Supabase.instance.client.auth.currentUser?.id}',
+                });
+                logE('Get response: $response');
+                final response2 = await restClient.patch(
+                  'profiles',
+                  data: {
+                    'full_name': 'Msi Sakib',
+                    'username': 'msiprime',
+                  },
+                  queryParams: {
+                    'id': 'eq.${Supabase.instance.client.auth.currentUser?.id}',
+                  },
+                );
+                logE('Insert response: $response2');
+              } catch (e) {
+                logE('Error: $e');
+              }
+            },
+            icon: const Icon(Icons.add),
+          ),
         ],
       ),
     );
