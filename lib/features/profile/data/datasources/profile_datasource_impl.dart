@@ -3,11 +3,7 @@ import 'package:flutter_template_by_msi/features/profile/data/models/profile_mod
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ProfileDataSourceImpl implements ProfileDataSource {
-  ProfileDataSourceImpl({
-    required this.supabaseClient,
-  });
-
-  final SupabaseClient supabaseClient;
+  final SupabaseClient supabaseClient = Supabase.instance.client;
 
   @override
   Future<ProfileModel> fetchProfile() async {

@@ -8,6 +8,7 @@ import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart' hide Environment;
 import 'package:persistent_storage/persistent_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 // Typedefs for injectable's annotations to hide the package from
 // the application code, so that it can be replaced with another DI package
@@ -109,10 +110,14 @@ class ManualServiceProvider {
   static Future<void> init() async {
     final sharedPreferences = await SharedPreferences.getInstance();
 
-    manualSl.registerLazySingleton<PersistentStorage>(
-      () => PersistentStorage(
-        sharedPreferences: sharedPreferences,
-      ),
-    );
+    manualSl
+      ..registerLazySingleton<PersistentStorage>(
+        () => PersistentStorage(
+          sharedPreferences: sharedPreferences,
+        ),
+      )
+      ..registerLazySingleton<SupabaseClient>(
+        () => Supabase.instance.client,
+      );
   }
 }

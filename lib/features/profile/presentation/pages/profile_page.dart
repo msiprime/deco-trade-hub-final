@@ -2,19 +2,36 @@ import 'package:app_ui/app_ui.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_template_by_msi/features/profile/data/datasources/profile_datasource_impl.dart';
+import 'package:flutter_template_by_msi/features/profile/data/repositories/profile_repository_impl.dart';
 import 'package:flutter_template_by_msi/features/profile/presentation/blocs/profile_bloc.dart';
 import 'package:flutter_template_by_msi/features/profile/presentation/widget/profile_store_view.dart';
 
-class ProfilePage extends StatefulWidget {
+class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => ProfileBloc(
+        profileRepository:
+            ProfileRepositoryImp(profileDataSource: ProfileDataSourceImpl()),
+      ),
+      child: const ProfileView(),
+    );
+  }
+}
+
+class ProfileView extends StatefulWidget {
+  const ProfileView({super.key});
 
   static const String routeName = '/profile';
 
   @override
-  State<ProfilePage> createState() => _ProfilePageState();
+  State<ProfileView> createState() => _ProfileViewState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _ProfileViewState extends State<ProfileView> {
   late TextEditingController _fullNameController;
   late TextEditingController _userNameController;
   late TextEditingController _emailController;
@@ -109,7 +126,6 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Column _buildHeaderPart(BuildContext context, ProfileSuccess state) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         _buildCustomAvatarDesign(context, state),
         // const Gap(10),
@@ -133,33 +149,35 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget _buildEditButton() => TextButton(
-      onPressed: () {
-        setState(() {
-          isEditing = !isEditing;
-        });
-      },
-      child: const Text('Edit'));
+        onPressed: () {
+          setState(() {
+            isEditing = !isEditing;
+          });
+        },
+        child: const Text('Edit'),
+      );
 
   Widget _buildSaveButton() => TextButton(
-      onPressed: () {
-        setState(() {
-          if (formKey.currentState!.validate()) {
-            isEditing = !isEditing;
-            context.read<ProfileBloc>().add(
-                  UpdateProfileDataEvent(
-                    fullName: _fullNameController.text,
-                    userName: _userNameController.text,
-                    email: _emailController.text,
-                    mobileNumber: _phoneController.text,
-                    website: _websiteController.text,
-                    avatarUrl: _avatarUrlController.text,
-                  ),
-                );
-            context.read<ProfileBloc>().add(const GetProfileDataEvent());
-          }
-        });
-      },
-      child: const Text('Save'));
+        onPressed: () {
+          setState(() {
+            if (formKey.currentState!.validate()) {
+              isEditing = !isEditing;
+              context.read<ProfileBloc>().add(
+                    UpdateProfileDataEvent(
+                      fullName: _fullNameController.text,
+                      userName: _userNameController.text,
+                      email: _emailController.text,
+                      mobileNumber: _phoneController.text,
+                      website: _websiteController.text,
+                      avatarUrl: _avatarUrlController.text,
+                    ),
+                  );
+              context.read<ProfileBloc>().add(const GetProfileDataEvent());
+            }
+          });
+        },
+        child: const Text('Save'),
+      );
 
   Widget _buildCustomAvatarDesign(
     BuildContext context,
@@ -268,7 +286,9 @@ class _ProfilePageState extends State<ProfilePage> {
       _buildProfileInfoItem('Email', state.profileEntity.email),
       _buildProfileInfoItem('Phone', state.profileEntity.mobileNumber),
       _buildProfileInfoItem(
-          'Website', state.profileEntity.website ?? 'Not set'),
+        'Website',
+        state.profileEntity.website ?? 'Not set',
+      ),
     ];
   }
 
