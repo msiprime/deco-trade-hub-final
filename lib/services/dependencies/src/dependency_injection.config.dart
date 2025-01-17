@@ -8,7 +8,6 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:dio/dio.dart' as _i361;
 import 'package:flutter_template_by_msi/app/screens/home_screen/src/cubit/counter_cubit.dart'
     as _i365;
 import 'package:flutter_template_by_msi/blocs/app_meta_data_cubit/app_meta_data_cubit.dart'
@@ -41,7 +40,6 @@ _i174.GetIt $initInjectable(
   );
   final registerModule = _$RegisterModule();
   gh.factory<_i365.CounterCubit>(() => _i365.CounterCubit());
-  gh.lazySingleton<_i361.Dio>(() => registerModule.dio);
   gh.lazySingleton<_i61.ErrorLogger>(() => const _i61.ErrorLogger());
   gh.lazySingleton<_i763.AppLogger>(() => const _i763.AppLogger());
   gh.lazySingleton<_i74.EventLogger>(() => const _i74.EventLogger());

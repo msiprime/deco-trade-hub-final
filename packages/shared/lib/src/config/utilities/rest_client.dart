@@ -10,12 +10,16 @@ import 'package:shared/shared.dart';
 /// RestClient class is used to make API calls using Dio.
 class RestClient {
   /// Constructor for RestClient
-  RestClient() {
+  RestClient({
+    required String baseUrl,
+    required String apiKey,
+  }) {
     final options = BaseOptions(
       connectTimeout: const Duration(milliseconds: connectionTimeout),
       receiveTimeout: const Duration(milliseconds: receiveTimeout),
-      headers: <String, dynamic>{
-        'Accept': 'application/json',
+      baseUrl: '$baseUrl/rest/v1/',
+      headers: {
+        'apikey': apiKey,
         'Content-Type': 'application/json',
       },
     );
@@ -29,97 +33,100 @@ class RestClient {
   static const int receiveTimeout = 30000;
 
   Future<Response<dynamic>> get(
-    APIType apiType,
     String path, {
     Map<String, dynamic>? data,
     Map<String, dynamic>? headers,
   }) async {
-    final standardHeaders = await _getOptions(apiType);
     return _handleRequest(
-        () => _dio.get(path, queryParameters: data, options: standardHeaders));
+      () => _dio.get(
+        path,
+        queryParameters: data,
+      ),
+    );
   }
 
   Future<Response<dynamic>> post(
-    APIType apiType,
-    String path,
-    Map<String, dynamic> data, {
+    String path, {
+    required Map<String, dynamic> data,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? queryParams,
   }) async {
-    final standardHeaders = await _getOptions(apiType);
-    return _handleRequest(() => _dio.post(path,
-        data: data, options: standardHeaders, queryParameters: queryParams));
+    return _handleRequest(
+      () => _dio.post(path, data: data, queryParameters: queryParams),
+    );
   }
 
   Future<Response<dynamic>> postFormData(
-    APIType apiType,
-    String path,
-    Map<String, dynamic> data, {
+    String path, {
+    required Map<String, dynamic> data,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? queryParams,
   }) async {
-    final standardHeaders = await _getOptions(apiType);
-    return _handleRequest(() => _dio.post(path,
+    return _handleRequest(
+      () => _dio.post(
+        path,
         data: FormData.fromMap(data),
-        options: standardHeaders,
-        queryParameters: queryParams));
+        queryParameters: queryParams,
+      ),
+    );
   }
 
   Future<Response<dynamic>> patch(
-    APIType apiType,
-    String path,
-    Map<String, dynamic> data, {
+    String path, {
+    required Map<String, dynamic> data,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? queryParams,
   }) async {
-    final standardHeaders = await _getOptions(apiType);
-    return _handleRequest(() => _dio.patch(path,
-        data: data, options: standardHeaders, queryParameters: queryParams));
+    return _handleRequest(
+      () => _dio.patch(path, data: data, queryParameters: queryParams),
+    );
   }
 
   Future<Response<dynamic>> put(
-    APIType apiType,
-    String path,
-    Map<String, dynamic> data, {
+    String path, {
+    required Map<String, dynamic> data,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? queryParams,
   }) async {
-    final standardHeaders = await _getOptions(apiType);
-    return _handleRequest(() => _dio.put(path,
-        data: data, options: standardHeaders, queryParameters: queryParams));
+    return _handleRequest(
+      () => _dio.put(path, data: data, queryParameters: queryParams),
+    );
   }
 
   Future<Response<dynamic>> delete(
-    APIType apiType,
     String path, {
     Map<String, dynamic>? data,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? queryParams,
   }) async {
-    final standardHeaders = await _getOptions(apiType);
-    return _handleRequest(() => _dio.delete(path,
-        data: data, options: standardHeaders, queryParameters: queryParams));
+    return _handleRequest(
+      () => _dio.delete(path, data: data, queryParameters: queryParams),
+    );
   }
 
   Future<Response<dynamic>> fileUploadInS3Bucket({
     required String preAssignedUrl,
     required File file,
   }) async {
-    return _handleRequest(() async => _dio.put(
-          preAssignedUrl,
-          data: file.openRead(),
-          options: Options(
-              headers: {Headers.contentLengthHeader: await file.length()}),
-        ));
+    return _handleRequest(
+      () async => _dio.put(
+        preAssignedUrl,
+        data: file.openRead(),
+        options: Options(
+          headers: {Headers.contentLengthHeader: await file.length()},
+        ),
+      ),
+    );
   }
 
   Future<Response<dynamic>> _handleRequest(
-      Future<Response<dynamic>> Function() request) async {
+    Future<Response<dynamic>> Function() request,
+  ) async {
     try {
       return await request();
     } catch (error) {
       _handleDioError(error);
-      rethrow; // Rethrow after handling to allow further upstream handling if needed.
+      rethrow;
     }
   }
 
@@ -140,7 +147,6 @@ class RestClient {
         case DioExceptionType.badResponse:
           throw BadResponse('Bad Response');
         case DioExceptionType.connectionError:
-          // TODO(msi): message,
           throw ConnectionError('Connection Error');
         case DioExceptionType.badCertificate:
           throw BadCertificate('Bad Certificate');
@@ -176,20 +182,4 @@ class RestClient {
     }
     _dio.interceptors.addAll(interceptorList);
   }
-
-  Future<Options> _getOptions(APIType api) async {
-    const token = '';
-    if (api == APIType.protected) {
-      return Options(headers: {'Authorization': 'Bearer $token'});
-    }
-    return Options(); // Default options for public APIs
-  }
 }
-
-/// ApiOptions abstract class to define different API options
-abstract class ApiOptions {
-  Options options = Options();
-}
-
-// Enum for API Types
-enum APIType { public, protected }

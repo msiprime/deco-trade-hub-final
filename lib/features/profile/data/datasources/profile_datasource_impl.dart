@@ -5,30 +5,32 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class ProfileDataSourceImpl implements ProfileDataSource {
   final SupabaseClient supabaseClient = Supabase.instance.client;
 
+  // @override
+  //  Future<AuthResponse> signIn({
+  //    required String email,
+  //    required String password,
+  //  }) async {
+  //    logE('email: $email, password: $password');
+  //    final response = await dbClient.auth.signInWithPassword(
+  //      email: email,
+  //      password: password,
+  //    );
+  //    return response;
+  //  }
+
   @override
   Future<ProfileModel> fetchProfile() async {
-    final currentUser = supabaseClient.auth.currentUser;
-
-    if (currentUser == null) {
-      throw Exception('User is not authenticated');
-    }
-
-    // // final fcmToken = await CacheService.instance.retrieveFcmToken();
-    // try {
-    //   await supabaseClient
-    //       .from('profiles')
-    //       .update({'fcm_token': ''})
-    //       .eq('id', currentUser.id)
-    //       .single();
-    // } catch (e) {
-    //   throw Exception('Failed to update fcm token: $e');
-    // }
+    // final response = await supabaseClient
+    //     .from('profiles')
+    //     .select()
+    //     .eq('id', supabaseClient.auth.currentUser!.id)
+    //     .single();
 
     try {
       final response = await supabaseClient
           .from('profiles')
           .select()
-          .eq('id', currentUser.id)
+          .eq('id', supabaseClient.auth.currentUser!.id)
           .single();
 
       if (response.isEmpty) {
