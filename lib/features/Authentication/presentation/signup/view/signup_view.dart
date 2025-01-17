@@ -140,7 +140,7 @@ class SignUpForm extends StatelessWidget {
             hint: 'Enter your user name',
             icon: Icons.person_2_outlined,
             onChanged: (value) =>
-                context.read<SignUpBloc>().add(FullNameChanged(value)),
+                context.read<SignUpBloc>().add(UsernameChanged(value)),
           ),
           const SizedBox(height: 32),
           CustomTextField(

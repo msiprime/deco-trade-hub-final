@@ -58,7 +58,6 @@ class _AppState extends State<App> {
                 builder: (context) {
                   var result = routerWidget!;
 
-                  // Wrap the result widget with the InternetAccessCubitListener
                   result = InternetAccessListener(
                     onInternetAccessGained: (BuildContext context) {
                       // TODO(msi): handle connected state

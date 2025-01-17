@@ -1,3 +1,4 @@
+import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template_by_msi/app/screens/home_screen/src/ui/home_screen.dart';
 
@@ -15,9 +16,11 @@ class RetailerHomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ColoredBox(
-      color: Colors.red,
-      child: SignOutButton(),
+    return AppScaffold(
+      appBar: AppBar(
+        title: const Text('Retailer Home'),
+      ),
+      body: SignOutButton(),
     );
   }
 }
