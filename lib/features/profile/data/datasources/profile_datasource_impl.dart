@@ -9,19 +9,6 @@ class ProfileDataSourceImpl implements ProfileDataSource {
 
   final _restClient = manualSl.get<RestClient>();
 
-  // @override
-  //  Future<AuthResponse> signIn({
-  //    required String email,
-  //    required String password,
-  //  }) async {
-  //    logE('email: $email, password: $password');
-  //    final response = await dbClient.auth.signInWithPassword(
-  //      email: email,
-  //      password: password,
-  //    );
-  //    return response;
-  //  }
-
   @override
   Future<ProfileModel> fetchProfile() async {
     try {
