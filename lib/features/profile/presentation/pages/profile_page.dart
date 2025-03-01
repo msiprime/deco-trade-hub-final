@@ -89,8 +89,8 @@ class _ProfileViewState extends State<ProfileView> {
               _userNameController.text = state.profileEntity.userName;
               _emailController.text = state.profileEntity.email;
               _phoneController.text = state.profileEntity.mobileNumber;
-              _websiteController.text = state.profileEntity.website ?? '';
-              _avatarUrlController.text = state.profileEntity.avatarUrl ?? '';
+              _websiteController.text = state.profileEntity.website;
+              _avatarUrlController.text = state.profileEntity.avatarUrl;
 
               return SingleChildScrollView(
                 child: Form(

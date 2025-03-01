@@ -1,8 +1,8 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template_by_msi/app/screens/home_screen/src/ui/home_screen.dart';
-import 'package:flutter_template_by_msi/ui/widgets/global/global.dart';
-import 'package:localization/l10n/extensions.dart';
+
+import '../../store/view/store_sign_up_form.dart';
 
 class WholesalerHomePage extends StatelessWidget {
   const WholesalerHomePage({super.key});
@@ -27,22 +27,21 @@ class _WholesalerHomeViewState extends State<WholesalerHomeView> {
       appBar: AppBar(
         title: const Text('Wholesaler Home Page'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const ThemeSwitch(),
-            const SizedBox(height: 20),
-            Text(
-              context.appLocalizations.connected,
-              style: Theme.of(context).textTheme.displaySmall,
-            ),
-            const SizedBox(height: 20),
-            const LanguageDropdown(),
-            const SizedBox(height: 20),
-            const SignOutButton(),
-          ],
-        ),
+      body: Column(
+        children: [
+          Container(
+            height: 250,
+            color: Colors.red,
+            child: const Center(child: Text('Dashboard')),
+          ),
+          FilledButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => StoreSignUpForm()));
+              },
+              child: Text('Go to Sign Up Form')),
+          const SignOutButton(),
+        ],
       ),
     );
   }
