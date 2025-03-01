@@ -22,8 +22,8 @@ class RetailerRoute extends StatelessWidget {
           inactiveColorPrimary: Colors.grey,
         ),
         PersistentBottomNavBarItem(
-          icon: const Icon(Icons.shopping_cart),
-          title: 'Cart',
+          icon: const Icon(Icons.person_2_outlined),
+          title: 'Profile',
           activeColorPrimary: Colors.blue,
           inactiveColorPrimary: Colors.grey,
         ),

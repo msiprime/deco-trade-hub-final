@@ -22,8 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future<void>.delayed(const Duration(milliseconds: 1000))
-        .then((_) => ServiceProvider.get<AppMetaDataCubit>().init());
+    ServiceProvider.get<AppMetaDataCubit>().init();
   }
 
   @override
