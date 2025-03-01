@@ -15,23 +15,31 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         _authCubit = authCubit,
         super(const SignUpState.initial()) {
     on<UserRoleChanged>((event, emit) {
-      emit(state.copyWith(userRole: event.userRole));
+      emit(
+        state.copyWith(userRole: event.userRole, status: SignUpStatus.initial),
+      );
     });
 
     on<EmailChanged>((event, emit) {
-      emit(state.copyWith(email: event.email));
+      emit(state.copyWith(email: event.email, status: SignUpStatus.initial));
     });
 
     on<PasswordChanged>((event, emit) {
-      emit(state.copyWith(password: event.password));
+      emit(
+        state.copyWith(password: event.password, status: SignUpStatus.initial),
+      );
     });
 
     on<UsernameChanged>((event, emit) {
-      emit(state.copyWith(username: event.username));
+      emit(
+        state.copyWith(username: event.username, status: SignUpStatus.initial),
+      );
     });
 
     on<FullNameChanged>((event, emit) {
-      emit(state.copyWith(fullName: event.fullName));
+      emit(
+        state.copyWith(fullName: event.fullName, status: SignUpStatus.initial),
+      );
     });
 
     on<FormSubmitted>((event, emit) async {

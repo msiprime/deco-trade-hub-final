@@ -1,4 +1,4 @@
-package com.example.flutter_template_by_msi
+package com.decotradehub.gub
 
 import io.flutter.embedding.android.FlutterActivity
 

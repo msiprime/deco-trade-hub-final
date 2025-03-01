@@ -14,11 +14,13 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
         _authCubit = authCubit,
         super(const SignInState.initial()) {
     on<EmailChanged>((event, emit) {
-      emit(state.copyWith(email: event.email));
+      emit(state.copyWith(email: event.email, status: SignInStatus.initial));
     });
 
     on<PasswordChanged>((event, emit) {
-      emit(state.copyWith(password: event.password));
+      emit(
+        state.copyWith(password: event.password, status: SignInStatus.initial),
+      );
     });
 
     on<LoginSubmitted>((event, emit) async {

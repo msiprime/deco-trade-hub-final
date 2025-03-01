@@ -41,91 +41,56 @@ class SignInView2 extends StatelessWidget {
         backgroundColor: Colors.white,
         title: const Text('Sign In'),
       ),
-      body: BlocListener<SignInBloc, SignInState>(
-        listener: (context, state) {
-          if (state.status == SignInStatus.submitting) {
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(
-                const SnackBar(
-                  content: Text('Signing in...'),
-                  duration: Duration(minutes: 1),
-                ),
-              );
-          }
-          if (state.status == SignInStatus.success) {
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(
-                const SnackBar(
-                  content: Text('Sign in success'),
-                  duration: Duration(seconds: 2),
-                ),
-              );
-            clearAllRoutesAndGoToNamed(RolePromptPage.routeName);
-          }
-          if (state.status == SignInStatus.failure) {
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(
-                SnackBar(
-                  content: Text(state.errorMessage),
-                  duration: const Duration(seconds: 2),
-                ),
-              );
-          }
-        },
-        child: SafeArea(
-          child: SizedBox(
-            width: double.infinity,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    const SizedBox(height: 16),
-                    const Text(
-                      'Welcome Back',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
+      body: SafeArea(
+        child: SizedBox(
+          width: double.infinity,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const SizedBox(height: 16),
+                  const Text(
+                    'Welcome Back',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    'Sign in with your email and password '
+                    ' \nor continue with social media',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Color(0xFF757575)),
+                  ),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                  const SignInForm(),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SocialCard(
+                        icon: SvgPicture.string(googleIcon),
+                        press: () {},
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    const Text(
-                      'Sign in with your email and password '
-                      ' \nor continue with social media',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Color(0xFF757575)),
-                    ),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-                    const SignInForm(),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.2),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SocialCard(
-                          icon: SvgPicture.string(googleIcon),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: SocialCard(
+                          icon: SvgPicture.string(facebookIcon),
                           press: () {},
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: SocialCard(
-                            icon: SvgPicture.string(facebookIcon),
-                            press: () {},
-                          ),
-                        ),
-                        SocialCard(
-                          icon: SvgPicture.string(twitterIcon),
-                          press: () {},
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    const NoAccountText(),
-                  ],
-                ),
+                      ),
+                      SocialCard(
+                        icon: SvgPicture.string(twitterIcon),
+                        press: () {},
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  const NoAccountText(),
+                ],
               ),
             ),
           ),
@@ -233,19 +198,54 @@ class SignInForm extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 8),
-          ElevatedButton(
-            onPressed: () =>
-                context.read<SignInBloc>().add(const LoginSubmitted()),
-            style: ElevatedButton.styleFrom(
-              elevation: 0,
-              backgroundColor: const Color(0xFFFF7643),
-              foregroundColor: Colors.white,
-              minimumSize: const Size(double.infinity, 48),
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(16)),
+          BlocListener<SignInBloc, SignInState>(
+            listener: (context, state) {
+              if (state.status == SignInStatus.submitting) {
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(
+                    const SnackBar(
+                      content: Text('Signing in...'),
+                      duration: Duration(minutes: 1),
+                    ),
+                  );
+              }
+              if (state.status == SignInStatus.success) {
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(
+                    const SnackBar(
+                      content: Text('Sign in success'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                clearAllRoutesAndGoToNamed(RolePromptPage.routeName);
+              }
+              if (state.status == SignInStatus.failure) {
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(
+                    SnackBar(
+                      content: Text(state.errorMessage),
+                      duration: const Duration(seconds: 2),
+                    ),
+                  );
+              }
+            },
+            child: ElevatedButton(
+              onPressed: () =>
+                  context.read<SignInBloc>().add(const LoginSubmitted()),
+              style: ElevatedButton.styleFrom(
+                elevation: 0,
+                backgroundColor: const Color(0xFFFF7643),
+                foregroundColor: Colors.white,
+                minimumSize: const Size(double.infinity, 48),
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                ),
               ),
+              child: const Text('Continue'),
             ),
-            child: const Text('Continue'),
           ),
         ],
       ),

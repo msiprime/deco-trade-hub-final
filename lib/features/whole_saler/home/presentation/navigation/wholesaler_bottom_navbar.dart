@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template_by_msi/features/home/presentation/wholesaler/view/wholesaler_home_page.dart';
 import 'package:flutter_template_by_msi/features/profile/presentation/pages/profile_page.dart';
+import 'package:flutter_template_by_msi/features/whole_saler/home/presentation/view/wholesaler_home_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class WholesalerRoute extends StatelessWidget {

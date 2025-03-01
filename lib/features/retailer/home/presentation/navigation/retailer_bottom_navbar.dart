@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template_by_msi/features/home/presentation/retailer/view/retailer_home_page.dart';
 import 'package:flutter_template_by_msi/features/profile/presentation/pages/profile_page.dart';
+import 'package:flutter_template_by_msi/features/retailer/home/presentation/view/retailer_home_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class RetailerRoute extends StatelessWidget {
