@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template_by_msi/app/screens/home_screen/src/ui/home_screen.dart';
 import 'package:flutter_template_by_msi/features/home/presentation/wholesaler/view/payment_page.dart';
 
+import '../../../../payment/presentation/stripe/view/stripe_payment_view.dart';
 import '../../../../store/presentation/wholesaler/view/store_sign_up_form.dart';
 
 class WholesalerHomePage extends StatelessWidget {
@@ -38,13 +39,20 @@ class _WholesalerHomeViewState extends State<WholesalerHomeView> {
                       MaterialPageRoute(builder: (context) => PaymentPage2()));
                 },
                 child: Text('Go to Stripe payment page')),
-
             FilledButton(
                 onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => StoreSignUpForm()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => StoreSignUpForm()));
                 },
                 child: Text('Go to Sign Up Form')),
+            const SizedBox(height: 20),
+            FilledButton.tonalIcon(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => StripePaymentView()));
+                },
+                icon: Icon(Icons.payment),
+                label: Text('Stripe Payment view')),
             const SignOutButton(),
           ],
         ),
