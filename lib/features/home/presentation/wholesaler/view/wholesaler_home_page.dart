@@ -1,6 +1,7 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template_by_msi/app/screens/home_screen/src/ui/home_screen.dart';
+import 'package:flutter_template_by_msi/features/home/presentation/wholesaler/view/payment_page.dart';
 
 import '../../../../store/presentation/wholesaler/view/store_sign_up_form.dart';
 
@@ -27,17 +28,26 @@ class _WholesalerHomeViewState extends State<WholesalerHomeView> {
       appBar: AppBar(
         title: const Text('Wholesaler Home Page'),
       ),
-      body: Column(
-        children: [
+      body: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            FilledButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => PaymentPage2()));
+                },
+                child: Text('Go to Stripe payment page')),
 
-          FilledButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => StoreSignUpForm()));
-              },
-              child: Text('Go to Sign Up Form')),
-          const SignOutButton(),
-        ],
+            FilledButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => StoreSignUpForm()));
+                },
+                child: Text('Go to Sign Up Form')),
+            const SignOutButton(),
+          ],
+        ),
       ),
     );
   }
