@@ -5,10 +5,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter_template_by_msi/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
 import 'package:flutter_template_by_msi/features/Authentication/presentation/signin/view/signin_view.dart';
 import 'package:flutter_template_by_msi/features/Authentication/presentation/signup/view/signup_view.dart';
-import 'package:flutter_template_by_msi/features/retailer/features/home/navigation/retailer_bottom_navbar.dart';
-import 'package:flutter_template_by_msi/features/whole_saler/features/home/navigation/wholesaler_bottom_navbar.dart';
 import 'package:flutter_template_by_msi/services/global/enums.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../../home/presentation/retailer/navigation/retailer_bottom_navbar.dart';
+import '../../../../home/presentation/wholesaler/navigation/wholesaler_bottom_navbar.dart';
 
 class RolePromptPage extends StatefulWidget {
   const RolePromptPage({super.key});

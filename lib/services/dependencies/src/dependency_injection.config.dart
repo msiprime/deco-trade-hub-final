@@ -42,8 +42,8 @@ _i174.GetIt $initInjectable(
   final registerModule = _$RegisterModule();
   gh.factory<_i365.CounterCubit>(() => _i365.CounterCubit());
   gh.lazySingleton<_i61.ErrorLogger>(() => const _i61.ErrorLogger());
-  gh.lazySingleton<_i763.AppLogger>(() => const _i763.AppLogger());
   gh.lazySingleton<_i74.EventLogger>(() => const _i74.EventLogger());
+  gh.lazySingleton<_i763.AppLogger>(() => const _i763.AppLogger());
   gh.lazySingleton<_i400.ThemeCubit>(() => _i400.ThemeCubit());
   gh.lazySingleton<_i136.LocalizationCubit>(() => _i136.LocalizationCubit());
   gh.factory<int>(
