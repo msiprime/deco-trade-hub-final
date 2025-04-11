@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:flutter_template_by_msi/app/app_secret.dart';
 import 'package:flutter_template_by_msi/app/view/app.dart';
 import 'package:flutter_template_by_msi/services/dependencies/src/dependency_injection.dart';
@@ -43,6 +44,9 @@ Future<void> bootstrap(Environment env) async {
     url: AppSecrets.supabaseUrl,
     anonKey: AppSecrets.supabaseAnonKey,
   );
+
+  Stripe.publishableKey = AppSecrets.stripePublishableKey;
+  Stripe.instance.applySettings();
 
   await ManualServiceProvider.init();
 

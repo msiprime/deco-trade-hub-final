@@ -7,6 +7,10 @@
 		<string>en</string>
 		<string>es</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+    <string>Scan your card to add it automatically</string>
+    <key>NSCameraUsageDescription</key>
+    <string>To scan cards</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
