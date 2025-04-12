@@ -2,7 +2,7 @@ part of 'store_form_bloc.dart';
 
 enum StoreFormStatus { initial, submitting, success, error }
 
-class StoreSignUpState extends Equatable {
+class StoreFormState extends Equatable {
   final String storeName;
   final String ownerName;
   final String contactNumber;
@@ -20,7 +20,7 @@ class StoreSignUpState extends Equatable {
   final String? featuredProductId;
   final StoreFormStatus status;
 
-  const StoreSignUpState.StoreFormState({
+  const StoreFormState.StoreFormState({
     required this.storeName,
     required this.ownerName,
     required this.contactNumber,
@@ -39,7 +39,7 @@ class StoreSignUpState extends Equatable {
     this.featuredProductId,
   });
 
-  StoreSignUpState.initial()
+  StoreFormState.initial()
       : storeName = '',
         ownerName = '',
         contactNumber = '',
@@ -57,7 +57,7 @@ class StoreSignUpState extends Equatable {
         isVerified = false,
         featuredProductId = '';
 
-  StoreSignUpState copyWith({
+  StoreFormState copyWith({
     String? storeName,
     String? ownerName,
     String? contactNumber,
@@ -75,7 +75,7 @@ class StoreSignUpState extends Equatable {
     String? featuredProductId,
     StoreFormStatus? status,
   }) {
-    return StoreSignUpState.StoreFormState(
+    return StoreFormState.StoreFormState(
       status: status ?? this.status,
       storeName: storeName ?? this.storeName,
       ownerName: ownerName ?? this.ownerName,

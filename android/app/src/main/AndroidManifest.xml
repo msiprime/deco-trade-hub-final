@@ -4,7 +4,7 @@
     <application
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
-        android:label="flutter_template_by_msi"
+        android:label="Deco Trade Hub"
         android:enableOnBackInvokedCallback="true">
         <activity
             android:name=".MainActivity"

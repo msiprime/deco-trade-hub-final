@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:dio/dio.dart';
 import 'package:flutter_template_by_msi/app/app_secret.dart';
 import 'package:flutter_template_by_msi/services/dependencies/src/dependency_injection.config.dart';
 import 'package:flutter_template_by_msi/services/dependencies/src/dependency_injection_instance_names.dart';
