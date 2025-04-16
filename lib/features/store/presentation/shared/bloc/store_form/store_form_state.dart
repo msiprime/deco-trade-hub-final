@@ -18,6 +18,8 @@ class StoreFormState extends Equatable {
   final String? storeBannerUrl;
   final bool isVerified;
   final String? featuredProductId;
+  final String? ownerNID;
+  final String? ownerTIN;
   final StoreFormStatus status;
 
   const StoreFormState.StoreFormState({
@@ -35,6 +37,8 @@ class StoreFormState extends Equatable {
     this.socialMediaLinks,
     this.websiteUrl,
     this.storeBannerUrl,
+    this.ownerNID,
+    this.ownerTIN,
     this.isVerified = false,
     this.featuredProductId,
   });
@@ -54,6 +58,8 @@ class StoreFormState extends Equatable {
         socialMediaLinks = {},
         websiteUrl = '',
         storeBannerUrl = '',
+        ownerNID = '',
+        ownerTIN = '',
         isVerified = false,
         featuredProductId = '';
 
@@ -73,6 +79,8 @@ class StoreFormState extends Equatable {
     String? storeBannerUrl,
     bool? isVerified,
     String? featuredProductId,
+    String? ownerNID,
+    String? ownerTIN,
     StoreFormStatus? status,
   }) {
     return StoreFormState.StoreFormState(
@@ -90,6 +98,8 @@ class StoreFormState extends Equatable {
       socialMediaLinks: socialMediaLinks ?? this.socialMediaLinks,
       websiteUrl: websiteUrl ?? this.websiteUrl,
       storeBannerUrl: storeBannerUrl ?? this.storeBannerUrl,
+      ownerNID: ownerNID ?? this.ownerNID,
+      ownerTIN: ownerTIN ?? this.ownerTIN,
       isVerified: isVerified ?? this.isVerified,
       featuredProductId: featuredProductId ?? this.featuredProductId,
     );
@@ -110,6 +120,8 @@ class StoreFormState extends Equatable {
         socialMediaLinks,
         websiteUrl,
         storeBannerUrl,
+        ownerNID,
+        ownerTIN,
         isVerified,
         featuredProductId,
       ];

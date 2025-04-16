@@ -2,10 +2,10 @@ import 'package:app_ui/app_ui.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template_by_msi/features/profile/data/datasources/profile_datasource_impl.dart';
-import 'package:flutter_template_by_msi/features/profile/data/repositories/profile_repository_impl.dart';
-import 'package:flutter_template_by_msi/features/profile/presentation/blocs/profile_bloc.dart';
-import 'package:flutter_template_by_msi/features/profile/presentation/widget/profile_store_view.dart';
+import 'package:deco_trade_hub/features/profile/data/datasources/profile_datasource_impl.dart';
+import 'package:deco_trade_hub/features/profile/data/repositories/profile_repository_impl.dart';
+import 'package:deco_trade_hub/features/profile/presentation/blocs/profile_bloc.dart';
+import 'package:deco_trade_hub/features/profile/presentation/widget/profile_store_view.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});

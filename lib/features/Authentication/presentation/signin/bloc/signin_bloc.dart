@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_template_by_msi/features/Authentication/domain/repository/auth_repo.dart';
-import 'package:flutter_template_by_msi/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
+import 'package:deco_trade_hub/features/Authentication/domain/repository/auth_repo.dart';
+import 'package:deco_trade_hub/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
 
 part 'signin_event.dart';
 part 'signin_state.dart';

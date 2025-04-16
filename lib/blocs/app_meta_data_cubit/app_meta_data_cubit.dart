@@ -3,11 +3,11 @@ import 'dart:io';
 
 import 'package:android_id/android_id.dart';
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:flutter_template_by_msi/blocs/bloc_utils/src/base_cubit.dart';
-import 'package:flutter_template_by_msi/services/dependencies/src/dependency_injection.dart';
-import 'package:flutter_template_by_msi/services/global/enums.dart';
-import 'package:flutter_template_by_msi/services/logger/app_logger.dart';
-import 'package:flutter_template_by_msi/services/logger/error_logger.dart';
+import 'package:deco_trade_hub/blocs/bloc_utils/src/base_cubit.dart';
+import 'package:deco_trade_hub/services/dependencies/src/dependency_injection.dart';
+import 'package:deco_trade_hub/services/global/enums.dart';
+import 'package:deco_trade_hub/services/logger/app_logger.dart';
+import 'package:deco_trade_hub/services/logger/error_logger.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:persistent_storage/persistent_storage.dart';
 import 'package:shared/shared.dart';

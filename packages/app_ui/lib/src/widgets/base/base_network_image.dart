@@ -1,10 +1,10 @@
 // import 'package:cached_network_image/cached_network_image.dart';
 // import 'package:flutter/material.dart';
-// import 'package:flutter_template_by_msi/services/dependencies/src/dependency_injection.dart';
-// import 'package:flutter_template_by_msi/services/logger/app_logger.dart';
-// import 'package:flutter_template_by_msi/services/logger/event_logger.dart';
-// import 'package:flutter_template_by_msi/ui/images/images.dart';
-// import 'package:flutter_template_by_msi/ui/widgets/core_widgets/base_loader_widget.dart';
+// import 'package:deco_trade_hub/services/dependencies/src/dependency_injection.dart';
+// import 'package:deco_trade_hub/services/logger/app_logger.dart';
+// import 'package:deco_trade_hub/services/logger/event_logger.dart';
+// import 'package:deco_trade_hub/ui/images/images.dart';
+// import 'package:deco_trade_hub/ui/widgets/core_widgets/base_loader_widget.dart';
 //
 // /// A widget that displays a network image with caching, placeholder,
 // /// and error handling.

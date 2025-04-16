@@ -101,3 +101,15 @@ class FeaturedProductIdChanged extends StoreFormEvent {
 
   const FeaturedProductIdChanged(this.featuredProductId);
 }
+
+class NidChanged extends StoreFormEvent {
+  final String nid;
+
+  const NidChanged(this.nid);
+}
+
+class TinChanged extends StoreFormEvent {
+  final String tin;
+
+  const TinChanged(this.tin);
+}

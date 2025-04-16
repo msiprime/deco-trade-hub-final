@@ -1,8 +1,8 @@
-import 'package:flutter_template_by_msi/features/Authentication/data/data_source/auth_datasource.dart';
-import 'package:flutter_template_by_msi/features/Authentication/domain/repository/auth_repo.dart';
-import 'package:flutter_template_by_msi/services/dependencies/dependency_injection.dart';
-import 'package:flutter_template_by_msi/services/global/enums.dart';
-import 'package:flutter_template_by_msi/services/global/failures.dart';
+import 'package:deco_trade_hub/features/Authentication/data/data_source/auth_datasource.dart';
+import 'package:deco_trade_hub/features/Authentication/domain/repository/auth_repo.dart';
+import 'package:deco_trade_hub/services/dependencies/dependency_injection.dart';
+import 'package:deco_trade_hub/services/global/enums.dart';
+import 'package:deco_trade_hub/services/global/failures.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:persistent_storage/persistent_storage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';

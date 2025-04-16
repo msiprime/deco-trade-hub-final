@@ -1,4 +1,4 @@
-import 'package:flutter_template_by_msi/services/dependencies/src/dependency_injection.dart';
+import 'package:deco_trade_hub/services/dependencies/src/dependency_injection.dart';
 
 /// A singleton class that handles event logging.
 @LazySingletonService()

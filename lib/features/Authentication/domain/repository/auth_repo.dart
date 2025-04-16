@@ -1,4 +1,4 @@
-import 'package:flutter_template_by_msi/services/global/failures.dart';
+import 'package:deco_trade_hub/services/global/failures.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 

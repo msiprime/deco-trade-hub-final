@@ -90,11 +90,11 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.msi.flutter-template-by-msi" "\0"
-            VALUE "FileDescription", "flutter_template_by_msi" "\0"
+            VALUE "FileDescription", "deco_trade_hub" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "flutter_template_by_msi" "\0"
+            VALUE "InternalName", "deco_trade_hub" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.msi.flutter-template-by-msi. All rights reserved." "\0"
-            VALUE "OriginalFilename", "flutter_template_by_msi.exe" "\0"
+            VALUE "OriginalFilename", "deco_trade_hub.exe" "\0"
             VALUE "ProductName", "Flutter Template By Msi" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END

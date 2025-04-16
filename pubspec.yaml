@@ -1,4 +1,4 @@
-name: flutter_template_by_msi
+name: deco_trade_hub
 description: A very good flutter
 version: 1.0.0+1
 publish_to: none
@@ -61,6 +61,7 @@ dependencies:
   json_serializable: ^6.9.4
   flutter_stripe: ^11.4.0
   logging: ^1.3.0
+  get: ^4.7.2
 
 
 

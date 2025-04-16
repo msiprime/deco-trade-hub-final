@@ -1,6 +1,6 @@
-import 'package:flutter_template_by_msi/features/store/model/store_model.dart';
-import 'package:flutter_template_by_msi/features/store/repository/store_repository.dart';
-import 'package:flutter_template_by_msi/services/global/failures.dart';
+import 'package:deco_trade_hub/features/store/model/store_model.dart';
+import 'package:deco_trade_hub/features/store/repository/store_repository.dart';
+import 'package:deco_trade_hub/services/global/failures.dart';
 import 'package:fpdart/src/either.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';

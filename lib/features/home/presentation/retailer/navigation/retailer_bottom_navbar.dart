@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template_by_msi/features/profile/presentation/pages/profile_page.dart';
+import 'package:deco_trade_hub/features/profile/presentation/pages/profile_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 import '../view/retailer_home_page.dart';

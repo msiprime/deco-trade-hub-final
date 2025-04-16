@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_template_by_msi/app/router/app_router.dart';
-import 'package:flutter_template_by_msi/features/Authentication/data/data_source/auth_datasource_impl.dart';
-import 'package:flutter_template_by_msi/features/Authentication/data/repository/auth_repo_impl.dart';
-import 'package:flutter_template_by_msi/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
-import 'package:flutter_template_by_msi/features/Authentication/presentation/shared/widget/role_prompt_page.dart';
-import 'package:flutter_template_by_msi/features/Authentication/presentation/signin/bloc/signin_bloc.dart';
-import 'package:flutter_template_by_msi/features/Authentication/presentation/signup/view/signup_view.dart';
+import 'package:deco_trade_hub/app/router/app_router.dart';
+import 'package:deco_trade_hub/features/Authentication/data/data_source/auth_datasource_impl.dart';
+import 'package:deco_trade_hub/features/Authentication/data/repository/auth_repo_impl.dart';
+import 'package:deco_trade_hub/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
+import 'package:deco_trade_hub/features/Authentication/presentation/shared/widget/role_prompt_page.dart';
+import 'package:deco_trade_hub/features/Authentication/presentation/signin/bloc/signin_bloc.dart';
+import 'package:deco_trade_hub/features/Authentication/presentation/signup/view/signup_view.dart';
 import 'package:go_router/go_router.dart';
 
 class SignInPage extends StatelessWidget {

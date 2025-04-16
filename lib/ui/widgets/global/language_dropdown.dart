@@ -1,8 +1,8 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template_by_msi/blocs/localization_cubit/localization_cubit.dart';
-import 'package:flutter_template_by_msi/blocs/theme_cubit/theme_cubit.dart';
+import 'package:deco_trade_hub/blocs/localization_cubit/localization_cubit.dart';
+import 'package:deco_trade_hub/blocs/theme_cubit/theme_cubit.dart';
 
 class LanguageDropdown extends StatelessWidget {
   const LanguageDropdown({super.key});

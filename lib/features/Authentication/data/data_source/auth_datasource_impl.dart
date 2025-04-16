@@ -1,4 +1,4 @@
-import 'package:flutter_template_by_msi/features/Authentication/data/data_source/auth_datasource.dart';
+import 'package:deco_trade_hub/features/Authentication/data/data_source/auth_datasource.dart';
 import 'package:shared/shared.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 

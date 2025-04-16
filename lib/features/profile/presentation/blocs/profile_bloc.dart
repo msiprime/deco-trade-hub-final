@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template_by_msi/features/profile/domain/entities/profile_entity.dart';
-import 'package:flutter_template_by_msi/features/profile/domain/repositories/profile_repository.dart';
+import 'package:deco_trade_hub/features/profile/domain/entities/profile_entity.dart';
+import 'package:deco_trade_hub/features/profile/domain/repositories/profile_repository.dart';
 
 part 'profile_event.dart';
 part 'profile_state.dart';

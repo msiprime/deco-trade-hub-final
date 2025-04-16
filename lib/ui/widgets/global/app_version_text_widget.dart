@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template_by_msi/blocs/app_meta_data_cubit/app_meta_data_cubit.dart';
+import 'package:deco_trade_hub/blocs/app_meta_data_cubit/app_meta_data_cubit.dart';
 
 /// A widget that displays the app version and build number.
 /// If the app version is not available, a shrinked sized box is shown.

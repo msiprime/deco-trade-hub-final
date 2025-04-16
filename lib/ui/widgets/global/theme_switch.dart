@@ -1,7 +1,7 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template_by_msi/blocs/theme_cubit/theme_cubit.dart';
+import 'package:deco_trade_hub/blocs/theme_cubit/theme_cubit.dart';
 
 class ThemeSwitch extends StatelessWidget {
   const ThemeSwitch({super.key});

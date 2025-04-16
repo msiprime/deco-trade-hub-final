@@ -1,9 +1,9 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template_by_msi/app/screens/home_screen/src/ui/home_screen.dart';
-import 'package:flutter_template_by_msi/services/dependencies/dependency_injection.dart';
-import 'package:flutter_template_by_msi/ui/widgets/global/language_dropdown.dart';
-import 'package:flutter_template_by_msi/ui/widgets/global/theme_switch.dart';
+import 'package:deco_trade_hub/app/screens/home_screen/src/ui/home_screen.dart';
+import 'package:deco_trade_hub/services/dependencies/dependency_injection.dart';
+import 'package:deco_trade_hub/ui/widgets/global/language_dropdown.dart';
+import 'package:deco_trade_hub/ui/widgets/global/theme_switch.dart';
 import 'package:localization/localization.dart';
 import 'package:shared/shared.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';

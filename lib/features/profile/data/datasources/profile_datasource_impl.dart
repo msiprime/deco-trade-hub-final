@@ -1,6 +1,6 @@
-import 'package:flutter_template_by_msi/features/profile/data/datasources/profile_datasource.dart';
-import 'package:flutter_template_by_msi/features/profile/data/models/profile_model.dart';
-import 'package:flutter_template_by_msi/services/dependencies/src/dependency_injection.dart';
+import 'package:deco_trade_hub/features/profile/data/datasources/profile_datasource.dart';
+import 'package:deco_trade_hub/features/profile/data/models/profile_model.dart';
+import 'package:deco_trade_hub/services/dependencies/src/dependency_injection.dart';
 import 'package:shared/shared.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 

@@ -1,5 +1,5 @@
-import 'package:flutter_template_by_msi/blocs/bloc_utils/src/base_hydrated_cubit.dart';
-import 'package:flutter_template_by_msi/services/dependencies/src/dependency_injection.dart';
+import 'package:deco_trade_hub/blocs/bloc_utils/src/base_hydrated_cubit.dart';
+import 'package:deco_trade_hub/services/dependencies/src/dependency_injection.dart';
 
 /// Manages the locale of the app.
 @LazySingletonService()

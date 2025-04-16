@@ -1,7 +1,7 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template_by_msi/app/screens/home_screen/src/ui/home_screen.dart';
-import 'package:flutter_template_by_msi/features/home/presentation/wholesaler/view/payment_page.dart';
+import 'package:deco_trade_hub/app/screens/home_screen/src/ui/home_screen.dart';
+import 'package:deco_trade_hub/features/home/presentation/wholesaler/view/payment_page.dart';
 
 import '../../../../payment/presentation/stripe/view/stripe_payment_view.dart';
 import '../../../../store/presentation/wholesaler/view/store_sign_up_form.dart';

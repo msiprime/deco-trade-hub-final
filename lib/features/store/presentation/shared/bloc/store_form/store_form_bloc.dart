@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_template_by_msi/features/store/repository/store_repository.dart';
-import 'package:flutter_template_by_msi/services/dependencies/src/dependency_injection.dart';
+import 'package:deco_trade_hub/features/store/repository/store_repository.dart';
+import 'package:deco_trade_hub/services/dependencies/src/dependency_injection.dart';
 import 'package:shared/shared.dart';
 
 part 'store_form_event.dart';
@@ -13,7 +13,9 @@ part 'store_form_state.dart';
 class StoreFormBloc extends Bloc<StoreFormEvent, StoreFormState> {
   final StoreRepository _storeRepository;
 
-  StoreFormBloc(this._storeRepository) : super(StoreFormState.initial()) {
+  StoreFormBloc(
+    this._storeRepository,
+  ) : super(StoreFormState.initial()) {
     on<StoreFormEvent>((event, emit) {});
     on<StoreNameChanged>(_onStoreNameChanged);
     on<OwnerNameChanged>(_onOwnerNameChanged);
@@ -23,6 +25,8 @@ class StoreFormBloc extends Bloc<StoreFormEvent, StoreFormState> {
     on<PostalCodeChanged>(_onPostalCodeChanged);
     on<StoreTypeChanged>(_onStoreTypeChanged);
     on<StoreDescChanged>(_onStoreDescriptionChanged);
+    on<TinChanged>(_onTinChanged);
+    on<NidChanged>(_onNidChanged);
     on<StoreFormSubmitted>(_onStoreSignUpSubmitted);
     on<StoreFormReset>(_onStoreSignUpReset);
   }
@@ -93,6 +97,20 @@ class StoreFormBloc extends Bloc<StoreFormEvent, StoreFormState> {
     ));
   }
 
+  FutureOr<void> _onTinChanged(TinChanged event, Emitter<StoreFormState> emit) {
+    emit(state.copyWith(
+      ownerTIN: event.tin,
+      status: StoreFormStatus.initial,
+    ));
+  }
+
+  FutureOr<void> _onNidChanged(NidChanged event, Emitter<StoreFormState> emit) {
+    emit(state.copyWith(
+      ownerNID: event.nid,
+      status: StoreFormStatus.initial,
+    ));
+  }
+
   FutureOr<void> _onStoreSignUpSubmitted(
       StoreFormSubmitted event, Emitter<StoreFormState> emit) async {
     logE(state.email);
@@ -115,8 +133,8 @@ class StoreFormBloc extends Bloc<StoreFormEvent, StoreFormState> {
         websiteUrl: state.websiteUrl ?? '',
         storeBannerUrl: state.storeBannerUrl ?? '',
         storeLogoUrl: state.storeLogoUrl ?? '',
-        ownerNID: '',
-        ownerTIN: '',
+        ownerNID: state.ownerNID ?? '',
+        ownerTIN: state.ownerTIN ?? '',
       );
 
       result.fold(

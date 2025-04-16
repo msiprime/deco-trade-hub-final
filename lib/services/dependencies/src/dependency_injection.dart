@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:flutter_template_by_msi/app/app_secret.dart';
-import 'package:flutter_template_by_msi/services/dependencies/src/dependency_injection.config.dart';
-import 'package:flutter_template_by_msi/services/dependencies/src/dependency_injection_instance_names.dart';
-import 'package:flutter_template_by_msi/services/environments/environments.dart';
+import 'package:deco_trade_hub/app/app_secret.dart';
+import 'package:deco_trade_hub/services/dependencies/src/dependency_injection.config.dart';
+import 'package:deco_trade_hub/services/dependencies/src/dependency_injection_instance_names.dart';
+import 'package:deco_trade_hub/services/environments/environments.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart' hide Environment;
 import 'package:persistent_storage/persistent_storage.dart';

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(flutter_template_by_msi LANGUAGES CXX)
+project(deco_trade_hub LANGUAGES CXX)
 
-set(BINARY_NAME "flutter_template_by_msi")
+set(BINARY_NAME "deco_trade_hub")
 
 cmake_policy(SET CMP0063 NEW)
 

@@ -1,13 +1,13 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template_by_msi/app/router/app_router.dart';
-import 'package:flutter_template_by_msi/app/screens/home_screen/src/cubit/counter_cubit.dart';
-import 'package:flutter_template_by_msi/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
-import 'package:flutter_template_by_msi/features/Authentication/presentation/signin/view/signin_view.dart';
-import 'package:flutter_template_by_msi/services/dependencies/src/dependency_injection.dart';
-import 'package:flutter_template_by_msi/ui/widgets/global/base_language_dropdown.dart';
-import 'package:flutter_template_by_msi/ui/widgets/widgets.dart';
+import 'package:deco_trade_hub/app/router/app_router.dart';
+import 'package:deco_trade_hub/app/screens/home_screen/src/cubit/counter_cubit.dart';
+import 'package:deco_trade_hub/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
+import 'package:deco_trade_hub/features/Authentication/presentation/signin/view/signin_view.dart';
+import 'package:deco_trade_hub/services/dependencies/src/dependency_injection.dart';
+import 'package:deco_trade_hub/ui/widgets/global/base_language_dropdown.dart';
+import 'package:deco_trade_hub/ui/widgets/widgets.dart';
 import 'package:localization/localization.dart';
 
 class HomeScreen extends StatelessWidget {

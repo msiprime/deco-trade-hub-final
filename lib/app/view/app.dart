@@ -2,15 +2,15 @@ import 'package:app_ui/app_ui.dart';
 import 'package:fconnectivity/fconnectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template_by_msi/app/router/app_router.dart';
-import 'package:flutter_template_by_msi/app/view/global_keys.dart';
-import 'package:flutter_template_by_msi/blocs/app_meta_data_cubit/app_meta_data_cubit.dart';
-import 'package:flutter_template_by_msi/blocs/localization_cubit/localization_cubit.dart';
-import 'package:flutter_template_by_msi/blocs/theme_cubit/theme_cubit.dart';
-import 'package:flutter_template_by_msi/features/Authentication/data/data_source/auth_datasource_impl.dart';
-import 'package:flutter_template_by_msi/features/Authentication/data/repository/auth_repo_impl.dart';
-import 'package:flutter_template_by_msi/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
-import 'package:flutter_template_by_msi/services/dependencies/src/dependency_injection.dart';
+import 'package:deco_trade_hub/app/router/app_router.dart';
+import 'package:deco_trade_hub/app/view/global_keys.dart';
+import 'package:deco_trade_hub/blocs/app_meta_data_cubit/app_meta_data_cubit.dart';
+import 'package:deco_trade_hub/blocs/localization_cubit/localization_cubit.dart';
+import 'package:deco_trade_hub/blocs/theme_cubit/theme_cubit.dart';
+import 'package:deco_trade_hub/features/Authentication/data/data_source/auth_datasource_impl.dart';
+import 'package:deco_trade_hub/features/Authentication/data/repository/auth_repo_impl.dart';
+import 'package:deco_trade_hub/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
+import 'package:deco_trade_hub/services/dependencies/src/dependency_injection.dart';
 import 'package:localization/localization.dart';
 
 /// The root widget of the application.

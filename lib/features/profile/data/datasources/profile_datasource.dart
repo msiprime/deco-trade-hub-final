@@ -1,4 +1,4 @@
-import 'package:flutter_template_by_msi/features/profile/data/models/profile_model.dart';
+import 'package:deco_trade_hub/features/profile/data/models/profile_model.dart';
 
 abstract interface class ProfileDataSource {
   Future<ProfileModel> fetchProfile();

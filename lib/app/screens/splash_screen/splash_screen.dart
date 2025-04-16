@@ -2,11 +2,11 @@ import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_template_by_msi/app/screens/error_screen/error_screen.dart';
-import 'package:flutter_template_by_msi/blocs/app_meta_data_cubit/app_meta_data_cubit.dart';
-import 'package:flutter_template_by_msi/features/Authentication/presentation/shared/widget/role_prompt_page.dart';
-import 'package:flutter_template_by_msi/features/onboarding/presentation/view/onboarding_view.dart';
-import 'package:flutter_template_by_msi/services/dependencies/src/dependency_injection.dart';
+import 'package:deco_trade_hub/app/screens/error_screen/error_screen.dart';
+import 'package:deco_trade_hub/blocs/app_meta_data_cubit/app_meta_data_cubit.dart';
+import 'package:deco_trade_hub/features/Authentication/presentation/shared/widget/role_prompt_page.dart';
+import 'package:deco_trade_hub/features/onboarding/presentation/view/onboarding_view.dart';
+import 'package:deco_trade_hub/services/dependencies/src/dependency_injection.dart';
 import 'package:go_router/go_router.dart';
 
 class SplashScreen extends StatefulWidget {

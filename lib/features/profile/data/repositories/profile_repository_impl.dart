@@ -1,8 +1,8 @@
-import 'package:flutter_template_by_msi/features/profile/data/datasources/profile_datasource.dart';
-import 'package:flutter_template_by_msi/features/profile/data/models/profile_model.dart';
-import 'package:flutter_template_by_msi/features/profile/domain/entities/profile_entity.dart';
-import 'package:flutter_template_by_msi/features/profile/domain/repositories/profile_repository.dart';
-import 'package:flutter_template_by_msi/services/global/failures.dart';
+import 'package:deco_trade_hub/features/profile/data/datasources/profile_datasource.dart';
+import 'package:deco_trade_hub/features/profile/data/models/profile_model.dart';
+import 'package:deco_trade_hub/features/profile/domain/entities/profile_entity.dart';
+import 'package:deco_trade_hub/features/profile/domain/repositories/profile_repository.dart';
+import 'package:deco_trade_hub/services/global/failures.dart';
 import 'package:fpdart/fpdart.dart';
 
 class ProfileRepositoryImp implements ProfileRepository {

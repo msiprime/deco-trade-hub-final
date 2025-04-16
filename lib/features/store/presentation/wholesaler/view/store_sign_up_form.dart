@@ -126,6 +126,24 @@ class _StoreSignUpFormViewState extends State<StoreSignUpFormView> {
                       textInputType: TextInputType.url,
                     ),
 
+                    /// Tin card
+                    Text('TIN Card'),
+                    AppTextField.roundedBorder(
+                      hintText: 'Enter your TIN card number',
+                      onChanged: (value) => _bloc.add(TinChanged(value)),
+                      validator: (value) =>
+                          Validator.notEmpty(value, 'TIN card number'),
+                    ),
+
+                    /// NID
+                    Text('NID'),
+                    AppTextField.roundedBorder(
+                      hintText: 'Enter your NID number',
+                      onChanged: (value) => _bloc.add(NidChanged(value)),
+                      validator: (value) =>
+                          Validator.notEmpty(value, 'NID number'),
+                    ),
+
                     /// Submit Button
                     ElevatedButton(
                       onPressed: () {
