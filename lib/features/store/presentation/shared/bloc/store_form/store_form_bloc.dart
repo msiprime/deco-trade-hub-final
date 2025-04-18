@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:deco_trade_hub/features/store/repository/store_repository.dart';
 import 'package:deco_trade_hub/services/dependencies/src/dependency_injection.dart';
+import 'package:equatable/equatable.dart';
 import 'package:shared/shared.dart';
 
 part 'store_form_event.dart';
@@ -16,7 +16,7 @@ class StoreFormBloc extends Bloc<StoreFormEvent, StoreFormState> {
   StoreFormBloc(
     this._storeRepository,
   ) : super(StoreFormState.initial()) {
-    on<StoreFormEvent>((event, emit) {});
+    // on<StoreFormEvent>((event, emit) {});
     on<StoreNameChanged>(_onStoreNameChanged);
     on<OwnerNameChanged>(_onOwnerNameChanged);
     on<ContactNumChanged>(_onContactNumberChanged);
