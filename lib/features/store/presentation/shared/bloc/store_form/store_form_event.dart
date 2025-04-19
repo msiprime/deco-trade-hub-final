@@ -5,7 +5,8 @@ sealed class StoreFormEvent {
 }
 
 class StoreFormSubmitted extends StoreFormEvent {
-  const StoreFormSubmitted();
+  final String storeType;
+  const StoreFormSubmitted({required this.storeType});
 }
 
 class StoreFormReset extends StoreFormEvent {

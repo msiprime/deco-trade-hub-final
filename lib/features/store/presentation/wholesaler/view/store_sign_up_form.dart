@@ -157,7 +157,7 @@ class _StoreSignUpFormViewState extends State<StoreSignUpFormView> {
                     ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          _bloc.add(StoreFormSubmitted());
+                          _bloc.add(StoreFormSubmitted(storeType: _storeType));
                         }
                       },
                       child: Text('Submit'),

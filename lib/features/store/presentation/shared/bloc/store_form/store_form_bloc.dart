@@ -131,7 +131,6 @@ class StoreFormBloc extends Bloc<StoreFormEvent, StoreFormState> {
 
   FutureOr<void> _onStoreSignUpSubmitted(
       StoreFormSubmitted event, Emitter<StoreFormState> emit) async {
-    logE(state.email);
     emit(state.copyWith(
       status: StoreFormStatus.submitting,
     ));
@@ -146,7 +145,7 @@ class StoreFormBloc extends Bloc<StoreFormEvent, StoreFormState> {
         addressLine1: state.addressLine1,
         addressLine2: state.addressLine2 ?? '',
         postalCode: state.postalCode,
-        storeType: state.storeType,
+        storeType: event.storeType,
         socialMediaLinks: {},
         websiteUrl: state.websiteUrl ?? '',
         storeBannerUrl: state.storeBannerUrl ?? '',
