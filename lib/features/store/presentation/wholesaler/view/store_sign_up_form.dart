@@ -1,4 +1,6 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:deco_trade_hub/features/store/presentation/shared/widget/store_avatar_uploader.dart';
+import 'package:deco_trade_hub/features/store/presentation/shared/widget/store_cover_uploader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -42,6 +44,13 @@ class _StoreSignUpFormViewState extends State<StoreSignUpFormView> {
                   spacing: 10,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    StoreAvatarUploader(
+                        onImageUploaded: (url) =>
+                            _bloc.add(StoreLogoUrlChanged(url))),
+                    StoreCoverUploader(
+                        onImageUploaded: (url) =>
+                            _bloc.add(StoreBannerUrlChanged(url))),
+
                     /// Store Name
                     Text('Store Name'),
                     AppTextField.roundedBorder(

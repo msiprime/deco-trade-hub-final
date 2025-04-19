@@ -66,6 +66,12 @@ class StoreLogoUrlChanged extends StoreFormEvent {
   const StoreLogoUrlChanged(this.storeLogoUrl);
 }
 
+class StoreBannerUrlChanged extends StoreFormEvent {
+  final String storeBannerUrl;
+
+  const StoreBannerUrlChanged(this.storeBannerUrl);
+}
+
 class AddressLine2Changed extends StoreFormEvent {
   final String addressLine2;
 
@@ -82,12 +88,6 @@ class WebsiteUrlChanged extends StoreFormEvent {
   final String websiteUrl;
 
   const WebsiteUrlChanged(this.websiteUrl);
-}
-
-class StoreBannerUrlChanged extends StoreFormEvent {
-  final String storeBannerUrl;
-
-  const StoreBannerUrlChanged(this.storeBannerUrl);
 }
 
 class IsVerifiedChanged extends StoreFormEvent {

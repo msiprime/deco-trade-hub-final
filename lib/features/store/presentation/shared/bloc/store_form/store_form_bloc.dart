@@ -29,6 +29,8 @@ class StoreFormBloc extends Bloc<StoreFormEvent, StoreFormState> {
     on<NidChanged>(_onNidChanged);
     on<StoreFormSubmitted>(_onStoreSignUpSubmitted);
     on<StoreFormReset>(_onStoreSignUpReset);
+    on<StoreBannerUrlChanged>(_onStoreBannerUrlChanged);
+    on<StoreLogoUrlChanged>(_onStoreLogoUrlChanged);
   }
 
   FutureOr<void> _onStoreNameChanged(
@@ -107,6 +109,22 @@ class StoreFormBloc extends Bloc<StoreFormEvent, StoreFormState> {
   FutureOr<void> _onNidChanged(NidChanged event, Emitter<StoreFormState> emit) {
     emit(state.copyWith(
       ownerNID: event.nid,
+      status: StoreFormStatus.initial,
+    ));
+  }
+
+  FutureOr<void> _onStoreBannerUrlChanged(
+      StoreBannerUrlChanged event, Emitter<StoreFormState> emit) {
+    emit(state.copyWith(
+      storeBannerUrl: event.storeBannerUrl,
+      status: StoreFormStatus.initial,
+    ));
+  }
+
+  FutureOr<void> _onStoreLogoUrlChanged(
+      StoreLogoUrlChanged event, Emitter<StoreFormState> emit) {
+    emit(state.copyWith(
+      storeLogoUrl: event.storeLogoUrl,
       status: StoreFormStatus.initial,
     ));
   }

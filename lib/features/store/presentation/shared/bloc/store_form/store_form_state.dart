@@ -12,10 +12,10 @@ class StoreFormState extends Equatable {
   final String storeType;
   final String? storeDescription;
   final String? storeLogoUrl;
+  final String? storeBannerUrl;
   final String? addressLine2;
   final Map<String, dynamic>? socialMediaLinks;
   final String? websiteUrl;
-  final String? storeBannerUrl;
   final bool isVerified;
   final String? featuredProductId;
   final String? ownerNID;
@@ -50,14 +50,14 @@ class StoreFormState extends Equatable {
         email = '',
         addressLine1 = '',
         postalCode = '',
-        storeType = 'Wholesaler',
+        storeType = '',
         status = StoreFormStatus.initial,
         storeDescription = '',
         storeLogoUrl = '',
+        storeBannerUrl = '',
         addressLine2 = '',
         socialMediaLinks = {},
         websiteUrl = '',
-        storeBannerUrl = '',
         ownerNID = '',
         ownerTIN = '',
         isVerified = false,
@@ -72,10 +72,10 @@ class StoreFormState extends Equatable {
     String? postalCode,
     String? storeType,
     String? storeDescription,
-    String? storeLogoUrl,
     String? addressLine2,
     Map<String, dynamic>? socialMediaLinks,
     String? websiteUrl,
+    String? storeLogoUrl,
     String? storeBannerUrl,
     bool? isVerified,
     String? featuredProductId,
@@ -94,10 +94,10 @@ class StoreFormState extends Equatable {
       storeType: storeType ?? this.storeType,
       storeDescription: storeDescription ?? this.storeDescription,
       storeLogoUrl: storeLogoUrl ?? this.storeLogoUrl,
+      storeBannerUrl: storeBannerUrl ?? this.storeBannerUrl,
       addressLine2: addressLine2 ?? this.addressLine2,
       socialMediaLinks: socialMediaLinks ?? this.socialMediaLinks,
       websiteUrl: websiteUrl ?? this.websiteUrl,
-      storeBannerUrl: storeBannerUrl ?? this.storeBannerUrl,
       ownerNID: ownerNID ?? this.ownerNID,
       ownerTIN: ownerTIN ?? this.ownerTIN,
       isVerified: isVerified ?? this.isVerified,
