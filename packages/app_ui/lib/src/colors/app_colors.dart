@@ -18,7 +18,7 @@ sealed class AppColorsTheme extends ThemeExtension<AppColorsTheme> {
   static const Color emphasizeGrey = Color.fromARGB(255, 97, 97, 97);
   static const Color emphasizeDarkGrey = Color.fromARGB(255, 40, 37, 37);
   static const MaterialColor red = Colors.red;
-  static const Color green = Color(0xFF47C87D);
+  static const Color green = Color(0xFF104426);
 
   /// The blue primary color and swatch.
   static const Color blue = Color(0xFF347AE6);
@@ -130,7 +130,7 @@ final class AppColorsThemeLight extends AppColorsTheme {
   });
 
   static const AppColorsThemeLight instance = AppColorsThemeLight._(
-    primaryColor: AppColorsTheme.purple,
+    primaryColor: AppColorsTheme.green,
     onPrimary: AppColorsTheme.white,
     secondaryColor: AppColorsTheme.pink,
     onSecondary: AppColorsTheme.white,

@@ -1,9 +1,6 @@
 import 'dart:io';
 
 import 'package:app_ui/app_ui.dart';
-import 'package:app_ui/src/widgets/base/base_blur_widget.dart';
-import 'package:app_ui/src/widgets/base/base_dim_widget.dart';
-import 'package:app_ui/src/widgets/base/base_loader_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -18,7 +15,7 @@ class BaseScreenWidget extends StatelessWidget {
     super.key,
     this.applySafeArea = true,
     this.backgroundColor,
-    this.safeAreaBackgroundColor,
+    this.safeAreaBackgroundColor = Colors.transparent,
     this.appBarBackgroundColor,
     this.padding,
     this.loading = false,
@@ -28,7 +25,8 @@ class BaseScreenWidget extends StatelessWidget {
     this.canPop,
     this.appBarToolbarHeight,
     this.appBarElevation,
-    this.appBarTitle,
+    // this.appBarTitle,
+    this.appBar,
     this.appBarLeading,
     this.appBarActions,
     this.centerAppBarTitle,
@@ -40,6 +38,8 @@ class BaseScreenWidget extends StatelessWidget {
 
   /// The main content of the screen.
   final Widget body;
+
+  final AppBar? appBar;
 
   /// Whether to apply SafeArea to the screen.
   final bool applySafeArea;
@@ -78,7 +78,7 @@ class BaseScreenWidget extends StatelessWidget {
   final double? appBarElevation;
 
   /// The title widget for the AppBar.
-  final Widget? appBarTitle;
+  // final Widget? appBarTitle;
 
   /// The leading widget for the AppBar.
   final Widget? appBarLeading;
@@ -106,32 +106,21 @@ class BaseScreenWidget extends StatelessWidget {
     var result = body;
 
     final defaultBackgroundColor = context.appColorsTheme.background;
-    const defaultSafeAreaBackgroundColor = AppColorsTheme.black;
+    // const defaultSafeAreaBackgroundColor = AppColorsTheme.black;
 
     if (applySafeArea) {
-      result = ColoredBox(
-        color: safeAreaBackgroundColor ?? defaultSafeAreaBackgroundColor,
-        child: SafeArea(
+      result = Scaffold(
+        resizeToAvoidBottomInset: resizeToAvoidBottomInset,
+        appBar: appBar,
+        backgroundColor: backgroundColor ?? defaultBackgroundColor,
+        body: SafeArea(
           bottom: applyBottomSafeArea,
           top: applyTopSafeArea,
           right: applyRightSafeArea,
           left: applyLeftSafeArea,
-          child: Scaffold(
-            resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-            appBar: AppBar(
-              toolbarHeight: appBarToolbarHeight,
-              backgroundColor: appBarBackgroundColor ?? safeAreaBackgroundColor,
-              elevation: appBarElevation,
-              title: appBarTitle,
-              leading: appBarLeading,
-              actions: appBarActions,
-              centerTitle: centerAppBarTitle,
-            ),
-            backgroundColor: backgroundColor ?? defaultBackgroundColor,
-            body: Padding(
-              padding: padding ?? EdgeInsets.zero,
-              child: body,
-            ),
+          child: Padding(
+            padding: padding ?? EdgeInsets.zero,
+            child: body,
           ),
         ),
       );
