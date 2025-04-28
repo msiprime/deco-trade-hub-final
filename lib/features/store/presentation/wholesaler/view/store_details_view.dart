@@ -50,7 +50,7 @@ class StorePage extends StatelessWidget {
           Text(
             store.storeDescription ?? 'No description available',
             style: theme.textTheme.bodyLarge?.copyWith(
-              color: colors.onSurface.withOpacity(0.8),
+              color: colors.onSurface.withValues(alpha: .8),
             ),
           ),
           const SizedBox(height: 16),

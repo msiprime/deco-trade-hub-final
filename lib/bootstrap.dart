@@ -1,21 +1,22 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:deco_trade_hub/app/app_secret.dart';
 import 'package:deco_trade_hub/app/view/app.dart';
 import 'package:deco_trade_hub/services/dependencies/src/dependency_injection.dart';
 import 'package:deco_trade_hub/services/environments/environments.dart';
 import 'package:deco_trade_hub/services/logger/error_logger.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:logging/logging.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared/shared.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import 'core/di/file_container.dart';
 import 'core/logger/app_bloc_observer.dart';
 
 Future<void> bootstrap(Environment env) async {
@@ -24,6 +25,10 @@ Future<void> bootstrap(Environment env) async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+
+  /// GetX dependency injection
+  AppBindings().dependencies();
+
   await AppSecrets.load();
   await Supabase.initialize(
     url: AppSecrets.supabaseUrl,
@@ -37,9 +42,8 @@ Future<void> bootstrap(Environment env) async {
   await ServiceProvider.init(environment: env);
 
   HydratedBloc.storage = await HydratedStorage.build(
-    storageDirectory: kIsWeb
-        ? HydratedStorageDirectory.web
-        : HydratedStorageDirectory((await getTemporaryDirectory()).path),
+    storageDirectory:
+        kIsWeb ? HydratedStorageDirectory.web : HydratedStorageDirectory((await getTemporaryDirectory()).path),
   );
 
   ServiceProvider.get<ErrorLogger>().registerErrorHandlers();

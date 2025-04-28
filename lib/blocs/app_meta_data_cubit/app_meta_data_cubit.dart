@@ -2,12 +2,12 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:android_id/android_id.dart';
-import 'package:device_info_plus/device_info_plus.dart';
 import 'package:deco_trade_hub/blocs/bloc_utils/src/base_cubit.dart';
 import 'package:deco_trade_hub/services/dependencies/src/dependency_injection.dart';
 import 'package:deco_trade_hub/services/global/enums.dart';
 import 'package:deco_trade_hub/services/logger/app_logger.dart';
 import 'package:deco_trade_hub/services/logger/error_logger.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:persistent_storage/persistent_storage.dart';
 import 'package:shared/shared.dart';
@@ -16,7 +16,7 @@ part 'app_meta_data_state.dart';
 
 /// Cubit responsible for managing application metadata.
 ///
-/// This cubit handles the retrieval and storage of various device and
+/// This controller handles the retrieval and storage of various device and
 /// application
 /// information, such as device ID, OS type and version, app version, and build
 /// number.

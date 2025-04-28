@@ -1,7 +1,9 @@
 import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
 import 'package:deco_trade_hub/app/screens/home_screen/src/ui/home_screen.dart';
 import 'package:deco_trade_hub/features/home/presentation/wholesaler/view/payment_page.dart';
+import 'package:deco_trade_hub/features/profile/view/retailer/controller/retailer_profile_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../payment/presentation/stripe/view/stripe_payment_view.dart';
 import '../../../../store/presentation/wholesaler/view/store_sign_up_form.dart';
@@ -23,6 +25,15 @@ class WholesalerHomeView extends StatefulWidget {
 }
 
 class _WholesalerHomeViewState extends State<WholesalerHomeView> {
+  late final String name;
+
+  @override
+  void initState() {
+    name = Get.find<RetailerProfileController>().getName() ?? '';
+    print(name);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
@@ -33,6 +44,7 @@ class _WholesalerHomeViewState extends State<WholesalerHomeView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Text('Hello $name'),
             FilledButton(
                 onPressed: () {
                   Navigator.of(context).push(
