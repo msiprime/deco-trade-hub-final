@@ -2,7 +2,7 @@ init: clean get generate
 
 clean:
 	echo "Cleaning the project.." ; \
-	fvm flutter clean ; \
+	flutter clean ; \
 
 get:
 	echo "Getting dependencies.." ; \
