@@ -1,18 +1,16 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:deco_trade_hub/features/Authentication/data/data_source/auth_datasource_impl.dart';
 import 'package:deco_trade_hub/features/Authentication/data/repository/auth_repo_impl.dart';
 import 'package:deco_trade_hub/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
 import 'package:deco_trade_hub/features/Authentication/presentation/signup/bloc/signup_bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({
     required this.userRole,
     super.key,
   });
-
-  static const routeName = 'sign-up';
 
   final String userRole;
 
@@ -131,24 +129,21 @@ class SignUpForm extends StatelessWidget {
             label: 'Full Name',
             hint: 'Enter your full name',
             icon: Icons.person_2_outlined,
-            onChanged: (value) =>
-                context.read<SignUpBloc>().add(FullNameChanged(value)),
+            onChanged: (value) => context.read<SignUpBloc>().add(FullNameChanged(value)),
           ),
           const SizedBox(height: 32),
           CustomTextField(
             label: 'User Name',
             hint: 'Enter your user name',
             icon: Icons.person_2_outlined,
-            onChanged: (value) =>
-                context.read<SignUpBloc>().add(UsernameChanged(value)),
+            onChanged: (value) => context.read<SignUpBloc>().add(UsernameChanged(value)),
           ),
           const SizedBox(height: 32),
           CustomTextField(
             label: 'Email',
             hint: 'Enter your email',
             iconSvg: mailIcon,
-            onChanged: (value) =>
-                context.read<SignUpBloc>().add(EmailChanged(value)),
+            onChanged: (value) => context.read<SignUpBloc>().add(EmailChanged(value)),
           ),
           const SizedBox(height: 32),
           CustomTextField(
@@ -156,8 +151,7 @@ class SignUpForm extends StatelessWidget {
             hint: 'Enter your password',
             iconSvg: lockIcon,
             obscureText: true,
-            onChanged: (value) =>
-                context.read<SignUpBloc>().add(PasswordChanged(value)),
+            onChanged: (value) => context.read<SignUpBloc>().add(PasswordChanged(value)),
           ),
           const SizedBox(height: 32),
           ElevatedButton(

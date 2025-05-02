@@ -1,8 +1,6 @@
 import 'package:app_ui/app_ui.dart';
-import 'package:fconnectivity/fconnectivity.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:deco_trade_hub/app/router/app_router.dart';
+import 'package:deco_trade_hub/app/router/app_routes.dart';
 import 'package:deco_trade_hub/app/view/global_keys.dart';
 import 'package:deco_trade_hub/blocs/app_meta_data_cubit/app_meta_data_cubit.dart';
 import 'package:deco_trade_hub/blocs/localization_cubit/localization_cubit.dart';
@@ -11,14 +9,13 @@ import 'package:deco_trade_hub/features/Authentication/data/data_source/auth_dat
 import 'package:deco_trade_hub/features/Authentication/data/repository/auth_repo_impl.dart';
 import 'package:deco_trade_hub/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
 import 'package:deco_trade_hub/services/dependencies/src/dependency_injection.dart';
+import 'package:fconnectivity/fconnectivity.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:localization/localization.dart';
 
-/// The root widget of the application.
-///
-/// This widget sets up the BLoC providers, routing, theming, and localization
-/// for the entire app. It also handles connectivity status.
 class App extends StatefulWidget {
-  /// Creates a [App].
   const App({super.key});
 
   @override
@@ -50,43 +47,36 @@ class _AppState extends State<App> {
           builder: (context) {
             final language = context.watch<LocalizationCubit>().state;
             final theme = context.watch<ThemeCubit>().state;
-            return MaterialApp.router(
+
+            return GetMaterialApp(
               debugShowCheckedModeBanner: false,
-              routerConfig: appRouter,
+              getPages: appRoutes,
+              initialRoute: AppRoutes.splash,
               theme: theme.themeData,
-              builder: (context, routerWidget) => Builder(
-                builder: (context) {
-                  var result = routerWidget!;
+              builder: (context, child) {
+                var result = child!;
 
-                  result = InternetAccessListener(
-                    onInternetAccessGained: (BuildContext context) {
-                      // TODO(msi): handle connected state
-                      if (!_isFirstCapturedState) {
-                        context.showSuccessSnackBar(text: 'Connected');
-                      }
-                      _isFirstCapturedState = false;
-                    },
-                    onInternetAccessLost: (BuildContext context) {
-                      // TODO(msi): handle disconnected state
-                      context.showErrorSnackBar(text: 'Disconnected');
-                      _isFirstCapturedState = false;
-                    },
-                    child: result,
-                  );
+                result = InternetAccessListener(
+                  onInternetAccessGained: (BuildContext context) {
+                    if (!_isFirstCapturedState) {
+                      context.showSuccessSnackBar(text: 'Connected');
+                    }
+                    _isFirstCapturedState = false;
+                  },
+                  onInternetAccessLost: (BuildContext context) {
+                    context.showErrorSnackBar(text: 'Disconnected');
+                    _isFirstCapturedState = false;
+                  },
+                  child: result,
+                );
 
-                  // Wrap the result with a scaffold with a global key
-                  // to be used to show snack bars from anywhere in the app
-                  result = Scaffold(
-                    key: globalScaffoldKey,
-                    resizeToAvoidBottomInset: false,
-                    body: result,
-                  );
-
-                  return result;
-                },
-              ),
-              localizationsDelegates:
-                  ModuleALocalizations.localizationsDelegates,
+                return Scaffold(
+                  key: globalScaffoldKey,
+                  resizeToAvoidBottomInset: false,
+                  body: result,
+                );
+              },
+              localizationsDelegates: ModuleALocalizations.localizationsDelegates,
               supportedLocales: ModuleALocalizations.supportedLocales,
               locale: Locale.fromSubtags(languageCode: language.code),
             );

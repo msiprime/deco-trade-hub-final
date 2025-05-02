@@ -1,19 +1,16 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:deco_trade_hub/app/router/app_router.dart';
+import 'package:deco_trade_hub/app/router/app_routes.dart';
 import 'package:deco_trade_hub/features/Authentication/data/data_source/auth_datasource_impl.dart';
 import 'package:deco_trade_hub/features/Authentication/data/repository/auth_repo_impl.dart';
 import 'package:deco_trade_hub/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
-import 'package:deco_trade_hub/features/Authentication/presentation/shared/widget/role_prompt_page.dart';
 import 'package:deco_trade_hub/features/Authentication/presentation/signin/bloc/signin_bloc.dart';
 import 'package:deco_trade_hub/features/Authentication/presentation/signup/view/signup_view.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({super.key});
-
-  static const routeName = 'sign-in';
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +113,7 @@ class NoAccountText extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            context.goNamed(SignUpPage.routeName);
+            Get.toNamed(AppRoutes.rolePrompt);
           },
           child: const Text(
             'Sign Up',
@@ -145,8 +142,7 @@ class SignInForm extends StatelessWidget {
         children: [
           TextFormField(
             onSaved: (email) {},
-            onChanged: (email) =>
-                context.read<SignInBloc>().add(EmailChanged(email: email)),
+            onChanged: (email) => context.read<SignInBloc>().add(EmailChanged(email: email)),
             textInputAction: TextInputAction.next,
             decoration: InputDecoration(
               hintText: 'Enter your email',
@@ -173,9 +169,7 @@ class SignInForm extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 24),
             child: TextFormField(
               onSaved: (password) {},
-              onChanged: (password) => context
-                  .read<SignInBloc>()
-                  .add(PasswordChanged(password: password)),
+              onChanged: (password) => context.read<SignInBloc>().add(PasswordChanged(password: password)),
               obscureText: true,
               decoration: InputDecoration(
                 hintText: 'Enter your password',
@@ -219,7 +213,7 @@ class SignInForm extends StatelessWidget {
                       duration: Duration(seconds: 2),
                     ),
                   );
-                clearAllRoutesAndGoToNamed(RolePromptPage.routeName);
+                Get.offAllNamed(AppRoutes.rolePrompt);
               }
               if (state.status == SignInStatus.failure) {
                 ScaffoldMessenger.of(context)
@@ -233,8 +227,7 @@ class SignInForm extends StatelessWidget {
               }
             },
             child: ElevatedButton(
-              onPressed: () =>
-                  context.read<SignInBloc>().add(const LoginSubmitted()),
+              onPressed: () => context.read<SignInBloc>().add(const LoginSubmitted()),
               style: ElevatedButton.styleFrom(
                 elevation: 0,
                 backgroundColor: const Color(0xFFFF7643),

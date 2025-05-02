@@ -1,15 +1,16 @@
 import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:deco_trade_hub/app/router/app_router.dart';
 import 'package:deco_trade_hub/app/screens/error_screen/error_screen.dart';
 import 'package:deco_trade_hub/features/onboarding/presentation/widget/widget.dart';
 import 'package:deco_trade_hub/services/dependencies/src/dependency_injection.dart';
 import 'package:deco_trade_hub/services/global/enums.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:get/get.dart';
 import 'package:persistent_storage/persistent_storage.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import '../../../../app/router/app_routes.dart';
 
 class OnBoardingView extends HookWidget {
   const OnBoardingView({super.key});
@@ -56,18 +57,13 @@ class OnBoardingView extends HookWidget {
                           key: StorageKeys.isFirstTimer.keyString,
                           value: 'false',
                         );
-                        clearAllRoutesAndGoToNamed(
-                          RolePromptPage.routeName,
-                        );
+                        Get.offAllNamed(AppRoutes.rolePrompt);
                       } catch (e) {
-                        context.goNamed(ErrorScreen.routeName);
+                        Get.toNamed(ErrorScreen.routeName);
                       }
                     },
                     child: const Text('Next'),
-                  )
-                      .animate()
-                      .slideX(duration: 500.ms, begin: 0.09)
-                      .fadeIn(duration: 200.ms)
+                  ).animate().slideX(duration: 500.ms, begin: 0.09).fadeIn(duration: 200.ms)
                 else
                   Padding(
                     padding: const EdgeInsets.all(16),
@@ -75,7 +71,7 @@ class OnBoardingView extends HookWidget {
                       controller: pageController,
                       count: 3,
                       effect: ExpandingDotsEffect(
-                        activeDotColor: context.theme.primaryColor,
+                        activeDotColor: Theme.of(context).primaryColor,
                       ),
                     ),
                   ),

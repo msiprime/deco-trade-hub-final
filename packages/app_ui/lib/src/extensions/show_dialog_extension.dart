@@ -1,10 +1,8 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:app_ui/app_ui.dart';
-import 'package:app_ui/src/styles/app_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 extension ShowDialogExtension on BuildContext {
   Future<bool?> showInfoDialog({
@@ -16,7 +14,12 @@ extension ShowDialogExtension on BuildContext {
         title: title,
         content: content,
         actions: [
-          DialogButton(text: actionText ?? 'Ok', onPressed: pop),
+          DialogButton(
+            text: actionText ?? 'Ok',
+            onPressed: () {
+              Navigator.pop(this);
+            },
+          ),
         ],
       );
 
@@ -93,20 +96,17 @@ extension ShowDialogExtension on BuildContext {
         actions: [
           DialogButton(
             isDefaultAction: true,
-            onPressed: () => noAction == null
-                ? (canPop() ? pop(false) : null)
-                : noAction.call(this),
+            onPressed: () =>
+                noAction == null ? (Navigator.canPop(this) ? Navigator.pop(this, false) : null) : noAction.call(this),
             text: noText,
             textStyle: noTextStyle ?? labelLarge?.apply(color: adaptiveColor),
           ),
           DialogButton(
             isDestructiveAction: true,
-            onPressed: () => yesAction == null
-                ? (canPop() ? pop(true) : null)
-                : yesAction.call(this),
+            onPressed: () =>
+                yesAction == null ? (Navigator.canPop(this) ? Navigator.pop(this, true) : null) : yesAction.call(this),
             text: yesText,
-            textStyle:
-                yesTextStyle ?? labelLarge?.apply(color: AppColorsTheme.red),
+            textStyle: yesTextStyle ?? labelLarge?.apply(color: AppColorsTheme.red),
           ),
         ],
       );
@@ -197,8 +197,7 @@ extension ShowDialogExtension on BuildContext {
             initialChildSize: showFullSized ? 1.0 : initialChildSize,
             minChildSize: minChildSize,
             maxChildSize: maxChildSize,
-            builder: (context, scrollController) =>
-                pageBuilder.call(scrollController, controller),
+            builder: (context, scrollController) => pageBuilder.call(scrollController, controller),
           );
         },
       );
