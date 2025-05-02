@@ -1,14 +1,15 @@
 import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:deco_trade_hub/app/router/app_router.dart';
 import 'package:deco_trade_hub/app/screens/home_screen/src/cubit/counter_cubit.dart';
 import 'package:deco_trade_hub/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
-import 'package:deco_trade_hub/features/Authentication/presentation/signin/view/signin_view.dart';
 import 'package:deco_trade_hub/services/dependencies/src/dependency_injection.dart';
 import 'package:deco_trade_hub/ui/widgets/global/base_language_dropdown.dart';
 import 'package:deco_trade_hub/ui/widgets/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:localization/localization.dart';
+
+import '../../../../router/app_routes.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -111,7 +112,7 @@ class SignOutButton extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is UnAuthenticated) {
-          clearAllRoutesAndGoToNamed(SignInPage.routeName);
+          Get.offAllNamed(AppRoutes.signIn);
         }
       },
       builder: (context, state) {

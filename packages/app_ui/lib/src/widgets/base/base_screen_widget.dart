@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 /// A widget that represents a screen with common properties and functionality.
 ///
@@ -178,7 +177,7 @@ class BaseScreenWidget extends StatelessWidget {
               // Swipe from left to right. Pop the screen.
               if (canPop!) {
                 if (!context.mounted) return;
-                context.pop();
+                Navigator.pop(context);
               }
             }
           },

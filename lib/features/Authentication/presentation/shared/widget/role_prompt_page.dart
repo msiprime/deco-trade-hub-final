@@ -1,15 +1,14 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:deco_trade_hub/app/router/app_routes.dart';
+import 'package:deco_trade_hub/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
+import 'package:deco_trade_hub/features/Authentication/presentation/signin/view/signin_view.dart';
+import 'package:deco_trade_hub/features/home/presentation/retailer/navigation/retailer_bottom_navbar.dart';
+import 'package:deco_trade_hub/features/home/presentation/wholesaler/navigation/wholesaler_bottom_navbar.dart';
+import 'package:deco_trade_hub/services/global/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:deco_trade_hub/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
-import 'package:deco_trade_hub/features/Authentication/presentation/signin/view/signin_view.dart';
-import 'package:deco_trade_hub/features/Authentication/presentation/signup/view/signup_view.dart';
-import 'package:deco_trade_hub/services/global/enums.dart';
-import 'package:go_router/go_router.dart';
-
-import '../../../../home/presentation/retailer/navigation/retailer_bottom_navbar.dart';
-import '../../../../home/presentation/wholesaler/navigation/wholesaler_bottom_navbar.dart';
+import 'package:get/get.dart';
 
 class RolePromptPage extends StatefulWidget {
   const RolePromptPage({super.key});
@@ -56,8 +55,7 @@ class RolePromptView extends StatelessWidget {
                 ),
               ),
             ),
-          Authenticated() => (state.user.userMetadata != null &&
-                  state.user.userMetadata!['role'] != null)
+          Authenticated() => (state.user.userMetadata != null && state.user.userMetadata!['role'] != null)
               ? (state.user.userMetadata!['role'] == UserRole.isRetailer.value)
                   ? const RetailerRoute()
                   : const WholesalerRoute()
@@ -95,9 +93,9 @@ class RolePromptView extends StatelessWidget {
                     // Retailer Button
                     ElevatedButton(
                       onPressed: () {
-                        context.pushReplacementNamed(
-                          SignUpPage.routeName,
-                          extra: UserRole.isRetailer.value,
+                        Get.toNamed(
+                          AppRoutes.signUp,
+                          arguments: UserRole.isRetailer.value,
                         );
                       },
                       style: ElevatedButton.styleFrom(
@@ -122,9 +120,9 @@ class RolePromptView extends StatelessWidget {
                     // Wholesaler Button
                     ElevatedButton(
                       onPressed: () {
-                        context.pushReplacementNamed(
-                          SignUpPage.routeName,
-                          extra: UserRole.isWholesaler.value,
+                        Get.toNamed(
+                          AppRoutes.signUp,
+                          arguments: UserRole.isWholesaler.value,
                         );
                       },
                       style: ElevatedButton.styleFrom(
@@ -149,9 +147,7 @@ class RolePromptView extends StatelessWidget {
                     // Already Have an Account? Login Text Button
                     TextButton(
                       onPressed: () {
-                        context.pushReplacementNamed(
-                          SignInPage.routeName,
-                        );
+                        Get.toNamed(AppRoutes.signIn);
                       },
                       child: const Text(
                         'Already have an account? Log In',

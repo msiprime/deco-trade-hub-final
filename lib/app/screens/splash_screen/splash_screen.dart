@@ -1,13 +1,12 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:deco_trade_hub/blocs/app_meta_data_cubit/app_meta_data_cubit.dart';
+import 'package:deco_trade_hub/services/dependencies/src/dependency_injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:deco_trade_hub/app/screens/error_screen/error_screen.dart';
-import 'package:deco_trade_hub/blocs/app_meta_data_cubit/app_meta_data_cubit.dart';
-import 'package:deco_trade_hub/features/Authentication/presentation/shared/widget/role_prompt_page.dart';
-import 'package:deco_trade_hub/features/onboarding/presentation/view/onboarding_view.dart';
-import 'package:deco_trade_hub/services/dependencies/src/dependency_injection.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
+
+import '../../router/app_routes.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -26,20 +25,19 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   @override
-  Widget build(BuildContext context) =>
-      BlocConsumer<AppMetaDataCubit, AppMetaDataState>(
+  Widget build(BuildContext context) => BlocConsumer<AppMetaDataCubit, AppMetaDataState>(
         listener: (context, appMetaDataState) {
           switch (appMetaDataState) {
             case AppMetaDataInitial():
             case AppMetaDataLoading():
             case AppMetaDataLoaded():
               if (appMetaDataState.isFirstTimer == 'false') {
-                context.goNamed(RolePromptPage.routeName);
+                Get.toNamed(AppRoutes.rolePrompt);
               } else {
-                context.goNamed(OnBoardingView.routeName);
+                Get.toNamed(AppRoutes.onboarding);
               }
             case AppMetaDataLoadingFailed():
-              context.goNamed(ErrorScreen.routeName);
+              Get.toNamed(AppRoutes.error);
           }
         },
         builder: (context, appMetaDataState) {
